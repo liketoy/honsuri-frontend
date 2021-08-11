@@ -1,18 +1,29 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
-  </div>
+	<div class="home">
+		<full-page ref="fullpage" id="fullpage">
+			<SectionMainVue />
+			<!-- components/home/ 위치에 컴포넌트화 시켜서 본인 섹션 구성하기!!!
+			- 컴포넌트 파일명은 아래 참고
+			- Default Setting은 SectionIntroductionVue 참고
+			 -->
+
+			<SectionIntroductionVue />
+			<!-- SectionMusic Jae -->
+			<!-- SectionCocktail Joy -->
+			<!-- SectionBoard Elena -->
+		</full-page>
+	</div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
-
-export default {
-  name: "Home",
-  components: {
-    HelloWorld,
-  },
-};
+	// @ is an alias to /src
+	import SectionMainVue from "../components/home/SectionMain.vue";
+	import SectionIntroductionVue from "../components/home/SectionIntroduction.vue";
+	export default {
+		name: "Home",
+		components: {
+			SectionMainVue,
+			SectionIntroductionVue,
+		},
+	};
 </script>

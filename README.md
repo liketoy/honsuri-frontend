@@ -1,24 +1,7 @@
 # honsuri-frontend
 
-## Project setup
-```
-npm install
-```
+frontend repo of Jae, Joy, Elena(honsuri team) with Woody
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## 8월 20일 FRONT회의 전까지 각자 feature branch 만들어서 메인 섹션 구성해보기
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+branch 명은 feture/영어이름 으로 규격통일!
