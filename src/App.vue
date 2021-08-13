@@ -143,6 +143,10 @@
 		border-collapse: collapse;
 		border-spacing: 0;
 	}
+	a {
+		text-decoration: none;
+		color: inherit;
+	}
 
 	/* FullPage Section 중앙에 컨테이너 위치시키기 위함 */
 	.full__container {
