@@ -1,6 +1,6 @@
 <template>
 	<div class="section section__intro">
-		<div class="full__container" style="padding-bottom: 228px">
+		<div class="full__container" style="padding-bottom: 168px">
 			<h1>나에게 맞는 홈칵테일 찾기</h1>
 			<h4>혼수리 유저들이 공유하는 특별한 레시피</h4>
 			<div class="intro__wrapper">
@@ -60,7 +60,7 @@
 		width: 320px;
 		height: 508px;
 		left: 36px;
-		bottom: -228px;
+		bottom: -168px;
 		border-radius: 10px;
 		box-sizing: border-box;
 		background: #ffffff;

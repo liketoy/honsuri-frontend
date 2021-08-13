@@ -9,7 +9,6 @@
 						<img :src="cocktail.img" />
 						<div class="cocktail__content">
 							<p class="cocktail__name">{{ cocktail.cocktailName }}</p>
-							<hr />
 							<p class="cocktail__base">#{{ cocktail.base }}</p>
 						</div>
 					</div>
@@ -22,6 +21,7 @@
 <style scoped>
 	span {
 		font-size: 36px;
+		font-weight: 700;
 		border-bottom: 1px solid #b43539;
 		box-shadow: inset 0 -1px 0 #b43539;
 	}
@@ -29,19 +29,32 @@
 		background-color: #ededed;
 	}
 	.cocktail__container {
-		padding-inline-start: 190px;
-		padding-inline-end: 190px;
+		margin-top: 32px;
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 40px;
 	}
-	.cocktail__container .card__cocktail {
-		display: inline-block; /* 한 줄로 정렬 */
-		width: 25%;
-		margin-top: 30px;
-		/* overflow: hidden; */
+	.cocktail__content {
+		text-align: left;
+	}
+	.cocktail__name {
+		margin-top: 16px;
+		font-size: 20px;
+		font-weight: 600;
+	}
+	.cocktail__name::after {
+		margin-top: 20px;
+		content: "";
+		display: block;
+		width: 100px;
+		border-bottom: 2px solid;
+	}
+	.cocktail__base {
+		margin-top: 16px;
+		font-size: 15px;
 	}
 	.cocktail__container .card__cocktail img {
-		width: 200px;
-		height: 200px;
-
+		cursor: pointer;
 		-webkit-transform: scale(1);
 		-moz-transform: scale(1);
 		-ms-transform: scale(1);
@@ -59,26 +72,6 @@
 		-ms-transform: scale(1.05);
 		-o-transform: scale(1.05);
 		transform: scale(1.05);
-	}
-	.cocktail__container .card__cocktail .cocktail__content {
-		padding-inline-start: 10px;
-		padding-inline-end: 10px;
-	}
-	.cocktail__container .card__cocktail .cocktail__content hr {
-		padding: 0;
-		margin: 0;
-		width: 30%;
-		margin-block-start: 10px;
-		margin-block-end: 10px;
-	}
-	.cocktail__container .card__cocktail .cocktail__content .cocktail__name {
-		font-size: 17px;
-		text-align: left;
-		margin-block-start: 16px;
-	}
-	.cocktail__container .card__cocktail .cocktail__content .cocktail__base {
-		font-size: 12px;
-		text-align: left;
 	}
 </style>
 
