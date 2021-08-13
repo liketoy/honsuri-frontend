@@ -10,6 +10,7 @@
 			<SectionIntroductionVue />
 			<!-- SectionMusic Jae -->
 			<!-- SectionCocktail Joy -->
+			<SectionCocktailVue />
 			<!-- SectionBoard Elena -->
 		</full-page>
 	</div>
@@ -19,11 +20,14 @@
 	// @ is an alias to /src
 	import SectionMainVue from "../components/home/SectionMain.vue";
 	import SectionIntroductionVue from "../components/home/SectionIntroduction.vue";
+	import SectionCocktailVue from "@/components/home/SectionCocktail";
+
 	export default {
 		name: "Home",
 		components: {
 			SectionMainVue,
 			SectionIntroductionVue,
+			SectionCocktailVue,
 		},
 		options: {
 			licenseKey: "YOUR_KEY_HEERE",
