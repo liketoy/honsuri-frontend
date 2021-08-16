@@ -20,9 +20,9 @@
 	// @ is an alias to /src
 	import SectionMainVue from "../components/home/SectionMain.vue";
 	import SectionIntroductionVue from "../components/home/SectionIntroduction.vue";
-	import SectionCocktailVue from "@/components/home/SectionCocktail";
-
 	import SectionMusicJae from "../components/home/SectionMusicJae.vue";
+	import SectionCocktailVue from "../components/home/SectionCocktail.vue";
+
 	export default {
 		name: "Home",
 		components: {
