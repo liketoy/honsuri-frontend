@@ -39,6 +39,10 @@
 		width: 290px;
 		padding: 20px;
 	}
+
+	.music_inform p {
+		padding: 20px;
+	}
 </style>
 
 <script>
