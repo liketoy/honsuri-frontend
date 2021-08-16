@@ -5,6 +5,11 @@
 			<h1>HONSURI</h1>
 			<h4>지금 어떤 안주를 먹고 있는지, 어떤 술을 마시고 있는지 공유해봐요<br />방구석 혼술 더 이상 외롭지 않아</h4>
 		</div>
+		<div class="musicbox__cover" :class="{ musicbox__hidden: !isActive }" @click="isActive = !isActive">
+			<img src="@/assets/icons/up_arrow.png" alt="upArrow" />
+			<p>음악듣기</p>
+		</div>
+		<TheMusicBoxVue :isActive="!isActive" @updateIsActive="isActive = !isActive" />
 	</div>
 </template>
 
@@ -36,14 +41,36 @@
 	.bg__container h4 {
 		font-size: 20px;
 	}
+	.musicbox__cover {
+		cursor: pointer;
+		z-index: 1;
+		align-self: center;
+		position: absolute;
+		bottom: 6%;
+		transition: 0.3s;
+	}
+	.musicbox__cover p {
+		font-size: 20px;
+		color: #f2f2f2;
+	}
+	.musicbox__hidden {
+		display: none;
+	}
 </style>
 
 <script>
 	import TheHeaderVue from "../TheHeader.vue";
+	import TheMusicBoxVue from "../TheMusicBox.vue";
 	export default {
 		name: "SectionMain",
 		components: {
 			TheHeaderVue,
+			TheMusicBoxVue,
+		},
+		data: function () {
+			return {
+				isActive: true,
+			};
 		},
 	};
 </script>
