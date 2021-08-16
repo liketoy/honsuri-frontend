@@ -8,7 +8,7 @@
 			 -->
 
 			<SectionIntroductionVue />
-			<!-- SectionMusic Jae -->
+			<SectionMusicJae />
 			<!-- SectionCocktail Joy -->
 			<SectionCocktailVue />
 			<!-- SectionBoard Elena -->
@@ -22,12 +22,14 @@
 	import SectionIntroductionVue from "../components/home/SectionIntroduction.vue";
 	import SectionCocktailVue from "@/components/home/SectionCocktail";
 
+	import SectionMusicJae from "../components/home/SectionMusicJae.vue";
 	export default {
 		name: "Home",
 		components: {
 			SectionMainVue,
 			SectionIntroductionVue,
 			SectionCocktailVue,
+			SectionMusicJae,
 		},
 		options: {
 			licenseKey: "YOUR_KEY_HEERE",

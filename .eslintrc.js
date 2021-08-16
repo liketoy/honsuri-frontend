@@ -10,6 +10,7 @@ module.exports = {
     "plugin:prettier/recommended",
   ],
   plugins: ["prettier"],
+  
   parserOptions: {
     parser: "babel-eslint",
   },
