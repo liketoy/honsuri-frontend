@@ -8,7 +8,7 @@
 			 -->
 
 			<SectionIntroductionVue />
-			<!-- SectionMusic Jae -->
+			<SectionMusicJae />
 			<!-- SectionCocktail Joy -->
 			<!-- SectionBoard Elena -->
 		</full-page>
@@ -19,11 +19,13 @@
 	// @ is an alias to /src
 	import SectionMainVue from "../components/home/SectionMain.vue";
 	import SectionIntroductionVue from "../components/home/SectionIntroduction.vue";
+	import SectionMusicJae from "../components/home/SectionMusicJae.vue";
 	export default {
 		name: "Home",
 		components: {
 			SectionMainVue,
 			SectionIntroductionVue,
+			SectionMusicJae,
 		},
 	};
 </script>
