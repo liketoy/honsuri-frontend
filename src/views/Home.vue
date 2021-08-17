@@ -6,7 +6,6 @@
 			- 컴포넌트 파일명은 아래 참고
 			- Default Setting은 SectionIntroductionVue 참고
 			 -->
-
 			<SectionIntroductionVue />
 			<SectionMusicJae />
 			<!-- SectionCocktail Joy -->
@@ -34,5 +33,11 @@
 		options: {
 			licenseKey: "YOUR_KEY_HEERE",
 		},
+		/*data: {
+			SectionMainVue, 
+			SectionIntroductionVue, 
+			SectionCocktailVue,
+			SectionMusicJae,
+		},*/
 	};
 </script>
