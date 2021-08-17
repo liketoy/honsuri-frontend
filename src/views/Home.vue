@@ -1,6 +1,6 @@
 <template>
 	<div class="home">
-		<LandingIntranceVue/>
+		<LandingIntranceVue />
 		<full-page ref="fullpage" :options="options" id="fullpage">
 			<SectionMainVue />
 			<!-- components/home/ 위치에 컴포넌트화 시켜서 본인 섹션 구성하기!!!
