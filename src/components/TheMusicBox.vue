@@ -1,5 +1,5 @@
 <template>
-	<div class="musicbox__container" v-if="isActive">
+	<div class="musicbox__container" v-show="isActive">
 		<div class="x__wrapper" @click="closeMusicBox">
 			<span class="x__btn">x</span>
 		</div>
