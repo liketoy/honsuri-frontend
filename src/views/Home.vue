@@ -7,9 +7,8 @@
 			- 컴포넌트 파일명은 아래 참고
 			- Default Setting은 SectionIntroductionVue 참고
 			 -->
-
 			<SectionIntroductionVue />
-			<!-- SectionMusic Jae -->
+			<SectionMusicJae />
 			<!-- SectionCocktail Joy -->
 			<SectionCocktailVue />
 			<!-- SectionBoard Elena -->
@@ -21,16 +20,18 @@
 	// @ is an alias to /src
 	import SectionMainVue from "../components/home/SectionMain.vue";
 	import SectionIntroductionVue from "../components/home/SectionIntroduction.vue";
-	import SectionCocktailVue from "@/components/home/SectionCocktail";
-	import LandingIntranceVue from "@/components/landing/LandingIntrance";
+	import SectionMusicJae from "../components/home/SectionMusicJae.vue";
+	import SectionCocktailVue from "../components/home/SectionCocktail.vue";
+	import LandingIntranceVue from "../components/landing/LandingIntrance.vue";
 
 	export default {
 		name: "Home",
 		components: {
+			LandingIntranceVue,
 			SectionMainVue,
 			SectionIntroductionVue,
 			SectionCocktailVue,
-			LandingIntranceVue,
+			SectionMusicJae,
 		},
 		options: {
 			licenseKey: "YOUR_KEY_HEERE",

@@ -20,3 +20,10 @@ components/home/ 위치에 컴포넌트화 시켜서 본인 섹션 구성하기!
 - Anchor in MainFullpage <- Jae
 - LandingPage with Entrance logic <- Joy
 - Musicbox in SectionMain <- Woody
+
+## 8월 18일 오전 줌독서실에서 각자 맡은 부분 수정
+
+- SectionBoard <- Elena
+- Anchor in MainFullpage <- Jae
+- Refactoring SectionMusic <- Joy
+- Scroll Block & isRemeber <- Woody
