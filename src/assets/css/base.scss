@@ -1,0 +1,16 @@
+.swiper { 
+    height: 300px; 
+    width: 100%; 
+
+    .swiper-slide { 
+        margin:0px;
+        padding: 0px;
+
+        display: flex; 
+        gap:40px !important;    
+        justify-content: center; 
+        align-items: center; 
+        text-align: center; 
+        // font-weight: bold; 
+    } 
+}

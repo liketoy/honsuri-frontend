@@ -7,10 +7,12 @@
 			- Default Setting은 SectionIntroductionVue 참고
 			 -->
 
-			<SectionIntroductionVue />
+			<!-- <SectionIntroductionVue /> -->
 			<!-- SectionMusic Jae -->
 			<!-- SectionCocktail Joy -->
 			<SectionBoardVue />
+			<SectionSlideVue />
+			<SectionTestVue />
 		</full-page>
 	</div>
 </template>
@@ -18,15 +20,19 @@
 <script>
 	// @ is an alias to /src
 	import SectionMainVue from "../components/home/SectionMain.vue";
-	import SectionIntroductionVue from "../components/home/SectionIntroduction.vue";
+	// import SectionIntroductionVue from "../components/home/SectionIntroduction.vue";
 	import SectionBoardVue from "../components/home/SectionBoard.vue";
+	import SectionSlideVue from "../components/home/SectionSlide.vue";
+	import SectionTestVue from "../components/home/SectionTest.vue";
 
 	export default {
 		name: "Home",
 		components: {
 			SectionMainVue,
-			SectionIntroductionVue,
+			// SectionIntroductionVue,
 			SectionBoardVue,
+			SectionSlideVue,
+			SectionTestVue,
 		},
 	};
 </script>
