@@ -1,16 +1,16 @@
 <template>
 	<div class="home">
-		<LandingIntranceVue />
+		<LandingIntranceVue :value="IsClosedLanding" @input="DisableLanding" />
 		<full-page ref="fullpage" :options="options" id="fullpage">
 			<SectionMainVue />
 			<!-- components/home/ 위치에 컴포넌트화 시켜서 본인 섹션 구성하기!!!
 			- 컴포넌트 파일명은 아래 참고
 			- Default Setting은 SectionIntroductionVue 참고
 			 -->
-			<SectionIntroductionVue />
-			<SectionMusicJae />
-			<!-- SectionCocktail Joy -->
-			<SectionCocktailVue />
+			<!-- IsClosedLanding이 참일 경우 아래도 보여주기!-->
+			<SectionIntroductionVue v-show="IsClosedLanding" />
+			<SectionMusicJae v-show="IsClosedLanding" />
+			<SectionCocktailVue v-show="IsClosedLanding" />
 			<!-- SectionBoard Elena -->
 		</full-page>
 	</div>
@@ -26,6 +26,16 @@
 
 	export default {
 		name: "Home",
+		data: function () {
+			return {
+				IsClosedLanding: false,
+			};
+		},
+		methods: {
+			DisableLanding(val) {
+				this.IsClosedLanding = val;
+			},
+		},
 		components: {
 			LandingIntranceVue,
 			SectionMainVue,

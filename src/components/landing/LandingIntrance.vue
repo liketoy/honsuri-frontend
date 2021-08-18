@@ -10,9 +10,7 @@
 			<input class="year__input" placeholder="YYYY" v-model="birth" maxlength="4" @input="onlyNumbers" />
 			<p><input type="checkbox" id="remember" /><label for="remember">기억하기</label></p>
 			<!-- 2. button을 누르면 intranceContainerDisable 값이 false로 변경됨 -->
-			<button :disabled="!intranceBtnActive" @click="intranceContainerDisable = !intranceContainerDisable">
-				입장하기
-			</button>
+			<button :disabled="!intranceBtnActive" @click="closeLanding">입장하기</button>
 		</div>
 	</div>
 </template>
@@ -111,6 +109,10 @@
 			// 1. birth 관련 조건이 맞으면 버튼 활성화
 			onlyNumbers: function () {
 				this.birth = this.birth.replace(/[^0-9.]/g, "");
+			},
+			closeLanding: function () {
+				this.$emit("input", (this.DisableLanding = true));
+				this.intranceContainerDisable = !this.intranceContainerDisable;
 			},
 		},
 		computed: {
