@@ -15,7 +15,7 @@
 
 <style scoped>
 	.section__main {
-		background: center/cover no-repeat url("../../assets/background.jpg");
+		background: center/cover no-repeat url("../../assets/bgMain.png");
 		position: relative;
 	}
 	.section__main::before {
