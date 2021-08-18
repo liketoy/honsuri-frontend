@@ -16,6 +16,30 @@
 	</div>
 </template>
 
+<style>
+	.fp-right {
+		position: fixed;
+		color: #ffff;
+		right: 5%;
+		top: 50%;
+		font-size: 24px;
+		transform: translateY(-50%);
+		margin: 0 auto;
+	}
+	.fp-right ul li:not(:first-child, :last-child) {
+		display: none;
+	}
+	.fp-right ul li:first-child::after {
+		content: "";
+		display: block;
+		width: 4px;
+		border-radius: 2px;
+		background: white;
+		height: 200px;
+		margin: 10px auto;
+	}
+</style>
+
 <script>
 	// @ is an alias to /src
 	import SectionMainVue from "../components/home/SectionMain.vue";
@@ -33,8 +57,16 @@
 			SectionCocktailVue,
 			SectionMusicJae,
 		},
-		options: {
-			licenseKey: "YOUR_KEY_HEERE",
+		data() {
+			return {
+				options: {
+					licenseKey: "YOUR_KEY_HEERE",
+					anchors: ["01", "02", "03", "04"],
+					navigation: true,
+					scrollOverflow: true,
+					scrollBar: false,
+				},
+			};
 		},
 	};
 </script>
