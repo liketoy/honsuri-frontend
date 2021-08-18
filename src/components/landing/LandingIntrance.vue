@@ -9,7 +9,8 @@
 			<!-- v-model 통해 birth 값 데이터바인딩 -->
 			<input class="year__input" placeholder="YYYY" v-model="birth" maxlength="4" @input="onlyNumbers" />
 			<p><input type="checkbox" id="remember" /><label for="remember">기억하기</label></p>
-			<!-- 2. button을 누르면 intranceContainerDisable 값이 false로 변경됨 -->
+			<!-- 2. button을 누르면 intranceContainerDisable 값이 false로 변경하고,
+			Home.vue의 IsClosedLanding 값을 true로 변경해주는 함수 실행-->
 			<button :disabled="!intranceBtnActive" @click="closeLanding">입장하기</button>
 		</div>
 	</div>
