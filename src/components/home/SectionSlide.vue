@@ -1,8 +1,12 @@
 <template>
 	<div class="section">
 		<p class="title">혼술 인증샷</p>
-		<swiper class="swiper" :options="swiperOption">
-			<!-- <swiper-slide v-for="(board, index) in BoardComponent" :key="index" :virtualIndex="index">
+		<div class="container">
+			<div class="slide_btn btn_left swiper-button-prev" slot="button-prev">
+				<img :src="require(`@/assets/images/left.png`)" class="left_img" />
+			</div>
+			<swiper class="swiper" :options="swiperOption">
+				<!-- <swiper-slide v-for="(board, index) in BoardComponent" :key="index" :virtualIndex="index">
 				<div class="board">
 					<img :src="board.img" class="board_img" />
 					<div class="board_main_box">
@@ -13,113 +17,127 @@
 					</div>
 				</div>
 			</swiper-slide> -->
-			<swiper-slide>
-				<div class="board">
-					<img :src="require('@/assets/images/Allen.png')" class="board_img" />
-					<div class="board_main_box">
-						<div class="board_main">
-							<div class="board_writer">Allen</div>
-							<img :src="require(`@/assets/images/small_heart.png`)" class="board_like" />
+				<swiper-slide>
+					<div class="board">
+						<img :src="require('@/assets/images/Allen.png')" class="board_img" />
+						<div class="board_main_box">
+							<div class="board_main">
+								<div class="board_writer">Allen</div>
+								<img :src="require(`@/assets/images/small_heart.png`)" class="board_like" />
+							</div>
 						</div>
 					</div>
-				</div>
-			</swiper-slide>
-			<swiper-slide>
-				<div class="board">
-					<img :src="require('@/assets/images/Joy.png')" class="board_img" />
-					<div class="board_main_box">
-						<div class="board_main">
-							<div class="board_writer">Joy</div>
-							<img :src="require(`@/assets/images/small_heart.png`)" class="board_like" />
+				</swiper-slide>
+				<swiper-slide>
+					<div class="board">
+						<img :src="require('@/assets/images/Joy.png')" class="board_img" />
+						<div class="board_main_box">
+							<div class="board_main">
+								<div class="board_writer">Joy</div>
+								<img :src="require(`@/assets/images/small_heart.png`)" class="board_like" />
+							</div>
 						</div>
 					</div>
-				</div>
-			</swiper-slide>
-			<swiper-slide>
-				<div class="board">
-					<img :src="require('@/assets/images/Linda.png')" class="board_img" />
-					<div class="board_main_box">
-						<div class="board_main">
-							<div class="board_writer">Linda</div>
-							<img :src="require(`@/assets/images/small_heart.png`)" class="board_like" />
+				</swiper-slide>
+				<swiper-slide>
+					<div class="board">
+						<img :src="require('@/assets/images/Linda.png')" class="board_img" />
+						<div class="board_main_box">
+							<div class="board_main">
+								<div class="board_writer">Linda</div>
+								<img :src="require(`@/assets/images/small_heart.png`)" class="board_like" />
+							</div>
 						</div>
 					</div>
-				</div>
-			</swiper-slide>
-			<swiper-slide>
-				<div class="board">
-					<img :src="require('@/assets/images/Yunnie.png')" class="board_img" />
-					<div class="board_main_box">
-						<div class="board_main">
-							<div class="board_writer">Yunnie</div>
-							<img :src="require(`@/assets/images/small_heart.png`)" class="board_like" />
+					<!-- <div>Current slide is {{ isActive ? "active" : "not active" }}</div> -->
+				</swiper-slide>
+				<swiper-slide>
+					<div class="board">
+						<img :src="require('@/assets/images/Yunnie.png')" class="board_img" />
+						<div class="board_main_box">
+							<div class="board_main">
+								<div class="board_writer">Yunnie</div>
+								<img :src="require(`@/assets/images/small_heart.png`)" class="board_like" />
+							</div>
 						</div>
 					</div>
-				</div>
-			</swiper-slide>
-			<swiper-slide>
-				<div class="board">
-					<img :src="require('@/assets/images/Elena.png')" class="board_img" />
-					<div class="board_main_box">
-						<div class="board_main">
-							<div class="board_writer">Elena</div>
-							<img :src="require(`@/assets/images/small_heart.png`)" class="board_like" />
+				</swiper-slide>
+				<swiper-slide>
+					<div class="board">
+						<img :src="require('@/assets/images/Elena.png')" class="board_img" />
+						<div class="board_main_box">
+							<div class="board_main">
+								<div class="board_writer">Elena</div>
+								<img :src="require(`@/assets/images/small_heart.png`)" class="board_like" />
+							</div>
 						</div>
 					</div>
-				</div>
-			</swiper-slide>
-			<swiper-slide>
-				<div class="board">
-					<img :src="require('@/assets/images/Jae.png')" class="board_img" />
-					<div class="board_main_box">
-						<div class="board_main">
-							<div class="board_writer">Jae</div>
-							<img :src="require(`@/assets/images/small_heart.png`)" class="board_like" />
+				</swiper-slide>
+				<swiper-slide>
+					<div class="board">
+						<img :src="require('@/assets/images/Jae.png')" class="board_img" />
+						<div class="board_main_box">
+							<div class="board_main">
+								<div class="board_writer">Jae</div>
+								<img :src="require(`@/assets/images/small_heart.png`)" class="board_like" />
+							</div>
 						</div>
 					</div>
-				</div>
-			</swiper-slide>
-			<swiper-slide>
-				<div class="board">
-					<img :src="require('@/assets/images/Jinu.png')" class="board_img" />
-					<div class="board_main_box">
-						<div class="board_main">
-							<div class="board_writer">Jinu</div>
-							<img :src="require(`@/assets/images/small_heart.png`)" class="board_like" />
+				</swiper-slide>
+				<swiper-slide>
+					<div class="board">
+						<img :src="require('@/assets/images/Jinu.png')" class="board_img" />
+						<div class="board_main_box">
+							<div class="board_main">
+								<div class="board_writer">Jinu</div>
+								<img :src="require(`@/assets/images/small_heart.png`)" class="board_like" />
+							</div>
 						</div>
 					</div>
-				</div>
-			</swiper-slide>
-			<swiper-slide>
-				<div class="board">
-					<img :src="require('@/assets/images/Woody.png')" class="board_img" />
-					<div class="board_main_box">
-						<div class="board_main">
-							<div class="board_writer">Woody</div>
-							<img :src="require(`@/assets/images/small_heart.png`)" class="board_like" />
+				</swiper-slide>
+				<swiper-slide>
+					<div class="board">
+						<img :src="require('@/assets/images/Woody.png')" class="board_img" />
+						<div class="board_main_box">
+							<div class="board_main">
+								<div class="board_writer">Woody</div>
+								<img :src="require(`@/assets/images/small_heart.png`)" class="board_like" />
+							</div>
 						</div>
 					</div>
-				</div>
-			</swiper-slide>
+				</swiper-slide>
 
-			<!-- <div class="swiper-pagination" slot="pagination"></div> -->
-
-			<div class="slide_btn btn_left swiper-button-prev" slot="button-prev">
-				<img :src="require(`@/assets/images/left.png`)" class="left_img" />
-			</div>
+				<!-- <div class="swiper-pagination" slot="pagination"></div> -->
+			</swiper>
 			<div class="slide_btn btn_right swiper-button-next" slot="button-next">
 				<img :src="require(`@/assets/images/right.png`)" class="rigth_img" />
 			</div>
-		</swiper>
+		</div>
 	</div>
 </template>
 
 <style scoped>
-	.containter {
-		display: flex;
+	/* .swiper {
+		width: 1700px;
+	} */
+
+	/* .scale {
+		z-index: 15;
+	} */
+	/* .board:hover {
+		transform: scale(1.2);
+		-webkit-transform: scale(2.4);
+		-moz-transform: scale(1.2);
+		-ms-transform: scale(1.2);
+		-o-transform: scale(1.2);
+	} */
+	.container {
+		position: relative;
+		/* display: flex; */
 		width: 100%;
 		justify-content: center;
 		align-items: center;
+		/* gap: 40px; */
 	}
 	.title {
 		font-size: 48px;
@@ -130,11 +148,14 @@
 
 	.board {
 		position: relative;
+		width: 250px;
+		height: 250px;
+		/* z-index: 1; */
 	}
 
 	.board .board_img {
-		width: 250px;
-		height: 250px;
+		width: 100%;
+		height: 100%;
 	}
 
 	.board_main_box {
@@ -175,7 +196,6 @@
 		width: 48px;
 		height: 48px;
 		border-radius: 50%;
-		/* z-index: 2; */
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -193,24 +213,10 @@
 	.swiper-button-prev::after {
 		display: none;
 	}
-
-	element.style {
-		width: 250px;
-	}
-
-	.swiper-slide swiper-slide-next {
-		margin-right: 0px !important;
-		width: 250px !important;
-	}
-
-	/* .swiper-slide:nth-child(odd) .board {
-		width: 600px;
-	} */
 </style>
 
 <script>
 	import { mapState } from "vuex";
-
 	import { Swiper, SwiperSlide } from "vue-awesome-swiper";
 	import "swiper/css/swiper.css";
 	export default {
@@ -225,7 +231,9 @@
 			return {
 				swiperOption: {
 					slidesPerView: 6,
-					spaceBetween: 0,
+					spaceBetween: 40,
+
+					// zoom: true,
 					loop: true,
 					pagination: {
 						el: ".swiper-pagination",

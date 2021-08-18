@@ -82,11 +82,9 @@
 
 	.board_container {
 		display: flex;
-		/* padding-left: 110px; */
 		width: 1700px;
 		gap: 40px;
 		overflow: hidden;
-		/* position: relative; */
 		z-index: 1;
 	}
 

@@ -1,13 +1,17 @@
 .swiper { 
-    height: 300px; 
-    width: 100%; 
-
-    .swiper-slide { 
-        margin:0px;
+    height: 250px; 
+    width: 1700px;
+    // padding-left:10px;
+    // display: flex; 
+    // gap: 40px;
+    // gap:40px !important; 
+    // gap:40px !important; 
+    swiper-slide { 
+        margin:0px !important;
         padding: 0px;
 
         display: flex; 
-        gap:40px !important;    
+        // gap:40px !important;    
         justify-content: center; 
         align-items: center; 
         text-align: center; 
