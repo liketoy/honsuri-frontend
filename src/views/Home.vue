@@ -8,10 +8,12 @@
 			- Default Setting은 SectionIntroductionVue 참고
 			 -->
 			<SectionIntroductionVue />
-			<SectionMusicJae />
 			<!-- SectionCocktail Joy -->
 			<SectionCocktailVue />
+			<!-- SectionMusic Jae -->
+			<SectionMusicVue />
 			<!-- SectionBoard Elena -->
+			<SectionBoardVue />
 		</full-page>
 	</div>
 </template>
@@ -38,15 +40,25 @@
 		height: 200px;
 		margin: 10px auto;
 	}
+	.vueperslides__arrow {
+		background: #191919;
+		color: #ffffff;
+		border-radius: 50%;
+		opacity: 0.8;
+	}
+	.vueperslides__arrow svg {
+		width: 2.5em;
+	}
 </style>
 
 <script>
 	// @ is an alias to /src
+	import LandingIntranceVue from "../components/landing/LandingIntrance.vue";
 	import SectionMainVue from "../components/home/SectionMain.vue";
 	import SectionIntroductionVue from "../components/home/SectionIntroduction.vue";
-	import SectionMusicJae from "../components/home/SectionMusicJae.vue";
 	import SectionCocktailVue from "../components/home/SectionCocktail.vue";
-	import LandingIntranceVue from "../components/landing/LandingIntrance.vue";
+	import SectionMusicVue from "../components/home/SectionMusic.vue";
+	import SectionBoardVue from "../components/home/SectionBoard.vue";
 
 	export default {
 		name: "Home",
@@ -55,13 +67,14 @@
 			SectionMainVue,
 			SectionIntroductionVue,
 			SectionCocktailVue,
-			SectionMusicJae,
+			SectionMusicVue,
+			SectionBoardVue,
 		},
 		data() {
 			return {
 				options: {
 					licenseKey: "YOUR_KEY_HEERE",
-					anchors: ["01", "02", "03", "04"],
+					anchors: ["01", "02", "03", "04", "05"],
 					navigation: true,
 					scrollOverflow: true,
 					scrollBar: false,
