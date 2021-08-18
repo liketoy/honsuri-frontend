@@ -102,7 +102,7 @@
 
 <script>
 	export default {
-		name: "section",
+		name: "SectionMusic",
 		data() {
 			return {
 				musicList: [

@@ -9,31 +9,73 @@
 			 -->
 			<!-- IsClosedLanding이 참일 경우 아래도 보여주기!-->
 			<SectionIntroductionVue v-show="IsClosedLanding" />
-			<SectionMusicJae v-show="IsClosedLanding" />
+			<SectionMusicVue v-show="IsClosedLanding" />
 			<SectionCocktailVue v-show="IsClosedLanding" />
 			<!-- SectionBoard Elena -->
+			<SectionBoardVue />
 		</full-page>
 	</div>
 </template>
 
+<style>
+	.fp-right {
+		position: fixed;
+		color: #ffff;
+		right: 5%;
+		top: 50%;
+		font-size: 24px;
+		transform: translateY(-50%);
+		margin: 0 auto;
+	}
+	.fp-right ul li:not(:first-child, :last-child) {
+		display: none;
+	}
+	.fp-right ul li:first-child::after {
+		content: "";
+		display: block;
+		width: 4px;
+		border-radius: 2px;
+		background: white;
+		height: 200px;
+		margin: 10px auto;
+	}
+	.vueperslides__arrow {
+		background: #191919;
+		color: #ffffff;
+		border-radius: 50%;
+		opacity: 0.8;
+	}
+	.vueperslides__arrow svg {
+		width: 2.5em;
+	}
+</style>
+
 <script>
 	// @ is an alias to /src
+	import LandingIntranceVue from "../components/landing/LandingIntrance.vue";
 	import SectionMainVue from "../components/home/SectionMain.vue";
 	import SectionIntroductionVue from "../components/home/SectionIntroduction.vue";
-	import SectionMusicJae from "../components/home/SectionMusicJae.vue";
 	import SectionCocktailVue from "../components/home/SectionCocktail.vue";
-	import LandingIntranceVue from "../components/landing/LandingIntrance.vue";
+	import SectionMusicVue from "../components/home/SectionMusic.vue";
+	import SectionBoardVue from "../components/home/SectionBoard.vue";
 
 	export default {
 		name: "Home",
 		data: function () {
 			return {
 				IsClosedLanding: false,
+				options: {
+					licenseKey: "YOUR_KEY_HEERE",
+					anchors: ["01", "02", "03", "04", "05"],
+					navigation: true,
+					scrollOverflow: true,
+					scrollBar: false,
+				},
 			};
 		},
 		methods: {
-			DisableLanding(val) {
-				this.IsClosedLanding = val;
+			DisableLanding() {
+				this.IsClosedLanding = false;
 			},
 		},
 		components: {
@@ -41,10 +83,8 @@
 			SectionMainVue,
 			SectionIntroductionVue,
 			SectionCocktailVue,
-			SectionMusicJae,
-		},
-		options: {
-			licenseKey: "YOUR_KEY_HEERE",
+			SectionMusicVue,
+			SectionBoardVue,
 		},
 	};
 </script>
