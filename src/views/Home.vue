@@ -1,6 +1,6 @@
 <template>
 	<div class="home">
-		<LandingIntranceVue :value="[IsClosedLanding, IsRemebered]" @input="[DisableLanding, CheckRemember]" />
+		<LandingIntranceVue :value="[IsClosedLanding, IsRemembered]" @input="DisableLanding" />
 		<full-page ref="fullpage" :options="options" id="fullpage">
 			<SectionMainVue />
 			<!-- components/home/ 위치에 컴포넌트화 시켜서 본인 섹션 구성하기!!!
@@ -8,9 +8,9 @@
 			- Default Setting은 SectionIntroductionVue 참고
 			 -->
 			<!-- IsClosedLanding이 참일 경우 아래도 보여주기!-->
-			<SectionIntroductionVue v-show="IsClosedLanding || CheckRemember" />
-			<SectionMusicJae v-show="IsClosedLanding || CheckRemember" />
-			<SectionCocktailVue v-show="IsClosedLanding || CheckRemember" />
+			<SectionIntroductionVue v-show="IsClosedLanding || IsRemembered" />
+			<SectionMusicJae v-show="IsClosedLanding || IsRemembered" />
+			<SectionCocktailVue v-show="IsClosedLanding || IsRemembered" />
 			<!-- SectionBoard Elena -->
 		</full-page>
 	</div>
@@ -57,8 +57,6 @@
 		methods: {
 			DisableLanding(val) {
 				this.IsClosedLanding = val;
-			},
-			CheckRemember(val) {
 				this.IsRemembered = val;
 			},
 		},
