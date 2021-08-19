@@ -1,6 +1,6 @@
 <template>
 	<div class="home">
-		<LandingIntranceVue :value="IsClosedLanding" @input="DisableLanding" />
+		<LandingIntranceVue @updateLanding="isClosedLanding = !isClosedLanding" />
 		<full-page ref="fullpage" :options="options" id="fullpage">
 			<SectionMainVue />
 			<!-- components/home/ 위치에 컴포넌트화 시켜서 본인 섹션 구성하기!!!
@@ -8,11 +8,11 @@
 			- Default Setting은 SectionIntroductionVue 참고
 			 -->
 			<!-- IsClosedLanding이 참일 경우 아래도 보여주기!-->
-			<SectionIntroductionVue v-show="IsClosedLanding" />
-			<SectionMusicVue v-show="IsClosedLanding" />
-			<SectionCocktailVue v-show="IsClosedLanding" />
+			<SectionIntroductionVue v-show="isClosedLanding" />
+			<SectionMusicVue v-show="isClosedLanding" />
+			<SectionCocktailVue v-show="isClosedLanding" />
 			<!-- SectionBoard Elena -->
-			<SectionBoardVue />
+			<SectionBoardVue v-show="isClosedLanding" />
 		</full-page>
 	</div>
 </template>
@@ -63,7 +63,7 @@
 		name: "Home",
 		data: function () {
 			return {
-				IsClosedLanding: false,
+				isClosedLanding: false,
 				options: {
 					licenseKey: "YOUR_KEY_HEERE",
 					anchors: ["01", "02", "03", "04", "05"],
@@ -73,11 +73,7 @@
 				},
 			};
 		},
-		methods: {
-			DisableLanding() {
-				this.IsClosedLanding = false;
-			},
-		},
+		methods: {},
 		components: {
 			LandingIntranceVue,
 			SectionMainVue,
