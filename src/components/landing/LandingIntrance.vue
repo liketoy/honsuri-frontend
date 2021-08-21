@@ -110,7 +110,6 @@
 			},
 			enterMain: function () {
 				this.intranceContainerDisable = false;
-				this.$emit("updateLanding");
 			},
 		},
 	};

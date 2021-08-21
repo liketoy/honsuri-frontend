@@ -1,11 +1,11 @@
 <template>
 	<header class="full__container">
-		<div class="header__gnb">
+		<div class="header__gnb" :style="style">
 			<router-link to="/">
 				<span>HONSURI</span>
 			</router-link>
 			<div class="gnb__menu">
-				<router-link to="/">
+				<router-link to="/recipes">
 					<span>레시피</span>
 				</router-link>
 				<router-link to="/">
@@ -34,7 +34,7 @@
 	}
 	header a {
 		text-decoration: none;
-		color: #f2f2f2;
+		color: var(--color);
 		font-size: 18px;
 	}
 	.header__gnb {
@@ -60,5 +60,11 @@
 <script>
 	export default {
 		name: "TheHeader",
+		props: ["color"],
+		computed: {
+			style() {
+				return { "--color": this.color };
+			},
+		},
 	};
 </script>
