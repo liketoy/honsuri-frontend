@@ -27,14 +27,16 @@
 	header {
 		top: 0;
 		height: 80px;
+		position: relative;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 		z-index: 9;
+		background-color: white;
 	}
 	header a {
 		text-decoration: none;
-		color: #f2f2f2;
+		color: #191919;
 		font-size: 18px;
 	}
 	.header__gnb {
@@ -59,6 +61,6 @@
 
 <script>
 	export default {
-		name: "TheHeader",
+		name: "TheBlackHeader",
 	};
 </script>

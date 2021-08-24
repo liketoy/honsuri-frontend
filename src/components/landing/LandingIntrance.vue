@@ -110,7 +110,7 @@
 				this.birth = this.birth.replace(/[^0-9.]/g, "");
 			},
 			closeLanding: function () {
-				this.$emit("input", [(this.DisableLanding = true), this.getRemember]);
+				this.$emit("input", this.getRemember);
 				this.intranceContainerDisable = false;
 				//IsRemember키워드로 getremember값을 home.vue로 전달한다.
 			},
