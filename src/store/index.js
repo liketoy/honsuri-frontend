@@ -9,16 +9,25 @@ export default new Vuex.Store({
 		feeds: [],
 	},
 	mutations: {
-		setFeeds(state, data) {
+		SET_FEEDS(state, data) {
 			state.feeds = data;
 		},
 	},
 	actions: {
-		async getFeeds({ commit }) {
+		async GET_FEEDS({ commit }) {
 			const {
 				data: { results },
 			} = await api.feeds();
-			commit("setFeeds", results);
+			commit("SET_FEEDS", results);
+		},
+		async POST_FEED({ dispatch }, obj) {
+			const formData = new FormData();
+			formData.append("caption", obj.caption);
+			formData.append("photos", obj.photos);
+			const res = await api.createFeed(formData);
+			if (res.status === 201) {
+				dispatch("GET_FEEDS");
+			}
 		},
 	},
 	modules: {},

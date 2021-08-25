@@ -99,7 +99,6 @@
 <script>
 	import TheFeedCardVue from "../components/Feed/TheFeedCard.vue";
 	import TheHeaderVue from "../components/TheHeader.vue";
-	import api from "../api/index";
 
 	export default {
 		name: "Feeds",
@@ -121,17 +120,14 @@
 		},
 		methods: {
 			onInputImage: function () {
-				this.selectedFile = this.$refs.feedImage.files;
+				this.selectedFile = this.$refs.feedImage.files[0];
 			},
-			onSubmit: async function () {
-				const formData = new FormData();
-				formData.append("caption", this.caption);
-				formData.append("photos", this.selectedFile[0]);
-				await api.createFeed(formData);
+			onSubmit: function () {
+				this.$store.dispatch("POST_FEED", { caption: this.caption, photos: this.selectedFile });
 			},
 		},
 		mounted() {
-			this.$store.dispatch("getFeeds");
+			this.$store.dispatch("GET_FEEDS");
 		},
 	};
 </script>

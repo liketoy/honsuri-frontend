@@ -1,11 +1,11 @@
 import axios from "axios";
 
-const callApi = async (method, path, type, data, jwt) => {
+const callApi = async (method, path, data, jwt) => {
 	const headers = {
 		Authorization: jwt,
-		"Content-Type": type,
+		"Content-Type": method === "post" && path === "/feeds/" ? "multipart/form-data" : "application/json",
 	};
-	const baseUrl = "http://photoshoot-backend.herokuapp.com/api/v1";
+	const baseUrl = "https://photoshoot-backend.herokuapp.com/api/v1";
 	const fullUrl = `${baseUrl}${path}`;
 	if (method === "get" || method === "delete") {
 		return axios[method](fullUrl, { headers });
@@ -15,6 +15,6 @@ const callApi = async (method, path, type, data, jwt) => {
 };
 
 export default {
-	feeds: (page = 1) => callApi("get", `/feeds/?page=${page}`, "application/json"),
-	createFeed: form => callApi("post", `/feeds/`, "multipart/form-data", form),
+	feeds: (page = 1) => callApi("get", `/feeds/?page=${page}`),
+	createFeed: form => callApi("post", `/feeds/`, form),
 };
