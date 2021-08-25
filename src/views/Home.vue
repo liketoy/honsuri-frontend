@@ -54,10 +54,15 @@
 	// @ is an alias to /src
 	import LandingIntranceVue from "../components/landing/LandingIntrance.vue";
 	import SectionMainVue from "../components/home/SectionMain.vue";
+	// import SectionIntroductionVue from "../components/home/SectionIntroduction.vue";
+	import SectionBoardVue from "../components/home/SectionBoard.vue";
+	// import SectionSlideVue from "../components/home/SectionSlide.vue";
+	// import SectionTestVue from "../components/home/SectionTest.vue";
+
 	import SectionIntroductionVue from "../components/home/SectionIntroduction.vue";
 	import SectionCocktailVue from "../components/home/SectionCocktail.vue";
 	import SectionMusicVue from "../components/home/SectionMusic.vue";
-	import SectionBoardVue from "../components/home/SectionBoard.vue";
+	// import SectionBoardVue from "../components/home/SectionBoard.vue";
 
 	export default {
 		name: "Home",
@@ -76,10 +81,15 @@
 		components: {
 			LandingIntranceVue,
 			SectionMainVue,
+			// SectionIntroductionVue,
+			SectionBoardVue,
+			// SectionSlideVue,
+			// SectionTestVue,
+
 			SectionIntroductionVue,
 			SectionCocktailVue,
 			SectionMusicVue,
-			SectionBoardVue,
+			// SectionBoardVue,
 		},
 	};
 </script>

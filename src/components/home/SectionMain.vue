@@ -58,7 +58,6 @@
 <script>
 	import TheHeaderVue from "../TheHeader.vue";
 	import TheMusicBoxVue from "../TheMusicBox.vue";
-
 	export default {
 		name: "SectionMain",
 		components: {
