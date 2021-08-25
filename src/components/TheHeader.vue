@@ -11,7 +11,7 @@
 				<router-link to="/">
 					<span>대화하기</span>
 				</router-link>
-				<router-link to="/">
+				<router-link to="/guest_book">
 					<span>방명록</span>
 				</router-link>
 			</div>
