@@ -1,9 +1,7 @@
 <template>
 	<div class="container">
 		<img class="honsuri_img" src="@/assets/icons/honsuri.png" />
-		<p class="honsuri_text">
-			{{ question }}
-		</p>
+		<p class="honsuri_text">{{ $store.state.question }}</p>
 	</div>
 </template>
 
@@ -38,6 +36,7 @@
 			return {};
 		},
 		state: {
+			// Issue. template에서 mapState 활용이 왜 안될까!! {{question}}
 			...mapState(["question"]),
 		},
 	};
