@@ -20,7 +20,12 @@
 				<div class="info__box">
 					<p>비밀번호 확인</p>
 					<div class="info__inputs">
-						<input class="main__input" type="password" placeholder="위의 비밀번호를 다시 입력해 주세요." />
+						<input
+							class="main__input"
+							type="password"
+							placeholder="위의 비밀번호를 다시 입력해 주세요."
+							v-model="password1"
+						/>
 					</div>
 				</div>
 				<div class="info__box">
@@ -107,24 +112,23 @@
 				<h3>이용약관/개인정보 수집 및 이용 동의</h3>
 				<div class="agree__container">
 					<div class="all__agree">
-						<label for="allCheck"><input type="checkbox" id="allCheck" v-model="checkAll" />전체동의</label>
+						<label for="allCheck"><input type="checkbox" id="allCheck" v-model="allCheck" />전체동의</label>
 					</div>
 					<div class="choice__agree">
 						<label for="adultCheck"
-							><input type="checkbox" name="agreeCheck" id="adultCheck" v-model="check.adultCheck" />(필수) 만 19세
+							><input type="checkbox" name="agreeCheck" id="adultCheck" v-model="adultCheck" />(필수) 만 19세
 							이상입니다.</label
 						>
 						<label for="termsCheck"
-							><input type="checkbox" name="agreeCheck" id="termsCheck" v-model="check.termsCheck" />(필수) 이용약관
+							><input type="checkbox" name="agreeCheck" id="termsCheck" v-model="termsCheck" />(필수) 이용약관
 							동의</label
 						>
 						<label for="privacyCheck"
-							><input type="checkbox" name="agreeCheck" id="privacyCheck" v-model="check.privacyCheck" />(필수) 개인정보
-							수집 및 이용 동의</label
+							><input type="checkbox" name="agreeCheck" id="privacyCheck" v-model="privacyCheck" />(필수) 개인정보 수집
+							및 이용 동의</label
 						>
 						<label for="emailCheck"
-							><input type="checkbox" name="agreeCheck" id="emailCheck" v-model="check.emailCheck" />(선택) 이메일
-							수신</label
+							><input type="checkbox" name="agreeCheck" id="emailCheck" v-model="emailCheck" />(선택) 이메일 수신</label
 						>
 					</div>
 				</div>
@@ -132,10 +136,26 @@
 					class="submit__btn"
 					type="button"
 					value="가입완료"
+					:disabled="
+						this.email.length === 0 ||
+						this.password.length === 0 ||
+						this.password1.length === 0 ||
+						this.name.length === 0 ||
+						this.nickname.length === 0 ||
+						this.phone_number.length === 0 ||
+						this.alcohol_amount.length === 0 ||
+						this.favorite_alcohol.length === 0 ||
+						this.favorite_food.length === 0 ||
+						this.favorite_combination.length === 0 ||
+						this.adultCheck === false ||
+						this.termsCheck === false ||
+						this.privacyCheck === false
+					"
 					@click="
 						signUp({
 							email,
 							password,
+							password1,
 							name,
 							nickname,
 							phone_number,
@@ -261,6 +281,10 @@
 		margin-top: 30px;
 		cursor: pointer;
 	}
+	.submit__btn:disabled {
+		background: #767676;
+		cursor: not-allowed;
+	}
 </style>
 
 <script>
@@ -275,6 +299,7 @@
 			return {
 				email: "",
 				password: "",
+				password1: "",
 				name: "",
 				nickname: "",
 				phone_number: "",
@@ -282,40 +307,19 @@
 				favorite_alcohol: "",
 				favorite_food: "",
 				favorite_combination: "",
-				check: {
-					adultCheck: false,
-					termsCheck: false,
-					privacyCheck: false,
-					emailCheck: false,
-				},
+				allCheck: false,
+				adultCheck: false,
+				termsCheck: false,
+				privacyCheck: false,
+				emailCheck: false,
 			};
-		},
-		computed: {
-			checkAll: {
-				get: function () {
-					return false;
-				},
-				set: function (e) {
-					const checkboxes = document.querySelectorAll('input[name="agreeCheck"]');
-					console.log(checkboxes);
-					if (e === true) {
-						this.check.adultCheck = true;
-						this.check.termsCheck = true;
-						this.check.privacyCheck = true;
-						this.check.emailCheck = true;
-					} else {
-						this.check.adultCheck = false;
-						this.check.termsCheck = false;
-						this.check.privacyCheck = false;
-						this.check.emailCheck = false;
-					}
-					const checked = document.querySelectorAll('input[name="agreeCheck"]:checked');
-					console.log(checked);
-				},
-			},
 		},
 		methods: {
 			signUp: function (obj) {
+				if (obj.password !== obj.password1) {
+					alert("비밀번호가 서로 일치하지 않습니다.");
+					return;
+				}
 				this.$store.dispatch("POST_SIGNUP", obj);
 			},
 		},

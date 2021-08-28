@@ -11,5 +11,10 @@ Vue.use(VueFullPage);
 new Vue({
 	router,
 	store,
+	beforeMount() {
+		if (localStorage.getItem("token")) {
+			this.$store.dispatch("GET_USER");
+		}
+	},
 	render: h => h(App),
 }).$mount("#app");

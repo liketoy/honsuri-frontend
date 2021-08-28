@@ -48,6 +48,15 @@ const routes = [
 		beforeEnter: rejectAuthUser,
 	},
 	{
+		path: "/users/signout",
+		name: "SignOut",
+		// route level code-splitting
+		// this generates a separate chunk (about.[hash].js) for this route
+		// which is lazy-loaded when the route is visited.
+		component: () => import(/* webpackChunkName: "signin" */ "../views/Auth/SignOut.vue"),
+		beforeEnter: onlyAuthUser,
+	},
+	{
 		path: "/recipes",
 		name: "Recipes",
 		// route level code-splitting
@@ -70,6 +79,24 @@ const routes = [
 		// this generates a separate chunk (about.[hash].js) for this route
 		// which is lazy-loaded when the route is visited.
 		component: () => import(/* webpackChunkName: "me" */ "../views/Users/Me.vue"),
+		beforeEnter: onlyAuthUser,
+	},
+	{
+		path: "/users/me/password",
+		name: "Password",
+		// route level code-splitting
+		// this generates a separate chunk (about.[hash].js) for this route
+		// which is lazy-loaded when the route is visited.
+		component: () => import(/* webpackChunkName: "me" */ "../views/Users/Password.vue"),
+		beforeEnter: onlyAuthUser,
+	},
+	{
+		path: "/users/post",
+		name: "Post",
+		// route level code-splitting
+		// this generates a separate chunk (about.[hash].js) for this route
+		// which is lazy-loaded when the route is visited.
+		component: () => import(/* webpackChunkName: "me" */ "../views/Users/Post.vue"),
 		beforeEnter: onlyAuthUser,
 	},
 	{

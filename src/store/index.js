@@ -14,6 +14,8 @@ export default new Vuex.Store({
 		token: null,
 		isLoggedIn: false,
 		userInfo: null,
+		myPosts: [],
+		favs: [],
 	},
 	mutations: {
 		//feeds를 가져온다.
@@ -29,10 +31,17 @@ export default new Vuex.Store({
 			state.isLoggedIn = false;
 			state.token = null;
 			state.userInfo = null;
+			localStorage.removeItem("token");
 			router.push({ name: "Home" });
 		},
 		SET_USER(state, payload) {
 			state.userInfo = payload.data;
+		},
+		SET_MYPOST(state, payload) {
+			state.myPosts = payload.data;
+		},
+		SET_FAVS(state, payload) {
+			state.favs = payload.data;
 		},
 	},
 	actions: {
@@ -54,22 +63,22 @@ export default new Vuex.Store({
 				}
 			}
 		},
-
-		async POST_LOGIN({ commit }, obj) {
+		async POST_LOGIN({ dispatch }, obj) {
 			try {
+				console.log(obj);
 				const {
 					data: { token },
 				} = await api.login(obj);
 				if (token) {
-					const { data: userData } = await api.userInfo(token);
-					commit("LOGIN", { token, userData });
+					localStorage.setItem("token", token);
+					dispatch("GET_USER");
 					router.push({ name: "Home" });
 				}
 			} catch (e) {
+				alert("아이디와 비밀번호를 확인해주세요.");
 				console.warn(e);
 			}
 		},
-
 		async POST_SIGNUP(_, obj) {
 			try {
 				const { status } = await api.createAccount(obj);
@@ -79,6 +88,11 @@ export default new Vuex.Store({
 			} catch (e) {
 				console.warn(e);
 			}
+		},
+		async GET_USER({ commit }) {
+			const token = localStorage.getItem("token");
+			const { data: userData } = await api.userInfo(token);
+			commit("LOGIN", { token, userData });
 		},
 		async PATCH_USER({ state, commit }, obj) {
 			try {
@@ -90,10 +104,42 @@ export default new Vuex.Store({
 				console.warn(e);
 			}
 		},
-		async DELETE_USER({ state, commit }) {
+		async DELETE_USER({ state, commit }, obj) {
 			try {
-				await api.userDelete(state.token);
+				const res = await api.userDelete(obj, state.token);
+				console.log(res);
 				commit("LOGOUT");
+			} catch (e) {
+				console.warn(e);
+			}
+		},
+		async GET_MYPOST({ state, commit }) {
+			try {
+				const { status, data } = await api.userPost(state.token);
+				if (status === 200) {
+					commit("SET_MYPOST", { data });
+				}
+			} catch (e) {
+				console.warn(e);
+			}
+		},
+		async GET_FAV({ state, commit }) {
+			try {
+				const { status, data } = await api.userFav(state.token);
+				console.log(data);
+				if (status === 200) {
+					commit("SET_FAVS", { data });
+				}
+			} catch (e) {
+				console.warn(e);
+			}
+		},
+		async FATCH_PASSWORD({ state }, obj) {
+			try {
+				const { status } = await api.userPassword(obj, state.token);
+				if (status === 201) {
+					router.push({ name: "Me" });
+				}
 			} catch (e) {
 				console.warn(e);
 			}

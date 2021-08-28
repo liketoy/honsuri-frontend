@@ -1,9 +1,9 @@
 <template>
 	<div>
 		<user-layout-vue>
-			<h2 class="user__title">My Favorite</h2>
+			<h2 class="user__title">내가 쓴 글</h2>
 			<div class="userinput__container">
-				{{ favs }}
+				<TheFeedCardVue v-for="feed in feeds" :key="feed.id" :feed="feed" />
 			</div>
 		</user-layout-vue>
 	</div>
@@ -23,20 +23,22 @@
 
 <script>
 	import UserLayoutVue from "../../components/user/UserLayout.vue";
+	import TheFeedCardVue from "../../components/Feed/TheFeedCard.vue";
 
 	export default {
-		name: "Fav",
+		name: "Post",
 		components: {
 			UserLayoutVue,
+			TheFeedCardVue,
 		},
 		methods: {},
 		computed: {
-			favs() {
-				return this.$store.state.favs;
+			feeds() {
+				return this.$store.state.myPosts;
 			},
 		},
 		created() {
-			this.$store.dispatch("GET_FAV");
+			this.$store.dispatch("GET_MYPOST");
 		},
 	};
 </script>

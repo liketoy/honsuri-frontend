@@ -5,7 +5,7 @@
 			<p class="user__name">{{ userInfo.nickname }}</p>
 		</div>
 		<router-link to="/users/me" class="user__info">나의 정보</router-link>
-		<router-link to="/users/me" class="user__feeds">내가 쓴 글</router-link>
+		<router-link to="/users/post" class="user__feeds">내가 쓴 글</router-link>
 		<router-link to="/users/fav" class="user__fav">My Favorite</router-link>
 	</div>
 </template>

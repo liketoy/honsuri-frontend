@@ -22,7 +22,7 @@
 				</div>
 				<div class="input__box">
 					<p>비밀번호</p>
-					<input class="input__btn" type="button" value="비밀번호 변경" />
+					<router-link to="/users/me/password" class="input__btn" style="text-align: center">비밀번호 변경</router-link>
 				</div>
 			</div>
 			<h2 class="user__title">관심 정보</h2>
@@ -46,7 +46,7 @@
 				</div>
 			</div>
 			<div class="submit__btns">
-				<input class="submit__btn gray" type="button" value="회원 탈퇴" @click="signOut" />
+				<router-link to="/users/signout" class="submit__btn gray">회원탈퇴</router-link>
 				<input
 					class="submit__btn black"
 					type="button"
@@ -169,14 +169,6 @@
 		methods: {
 			userUpdate: function (obj) {
 				this.$store.dispatch("PATCH_USER", obj);
-			},
-			signOut: function () {
-				const res = confirm("정말 탈퇴하시겠습니까?");
-				if (res) {
-					this.$store.dispatch("DELETE_USER");
-				} else {
-					return;
-				}
 			},
 		},
 	};

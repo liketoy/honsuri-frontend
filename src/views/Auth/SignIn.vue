@@ -7,7 +7,7 @@
 			<input class="input__box" v-model="password" type="password" placeholder="비밀번호를 입력해 주세요." />
 			<label for="auto_login"><input type="checkbox" id="auto_login" />자동 로그인</label>
 			<input class="submit__box" type="button" value="로그인" @click="login({ email, password })" />
-			<router-link class="sign__up" to="/signup">회원가입</router-link>
+			<router-link class="sign__up" to="/users/signup">회원가입</router-link>
 		</div>
 	</div>
 </template>
