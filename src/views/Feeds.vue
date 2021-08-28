@@ -128,11 +128,11 @@
 		},
 		methods: {
 			onInputImage: function () {
-				this.selectedFile = this.$refs.feedImage.image[0];
+				this.selectedFile = this.$refs.feedImage.files[0];
 				console.log("온풋이미지");
 			},
 			onSubmit: function () {
-				this.$store.dispatch("POST_FEED", { content: this.content, photos: this.selectedFile });
+				this.$store.dispatch("POST_FEED", { content: this.content, image: this.selectedFile });
 			},
 		},
 		mounted() {

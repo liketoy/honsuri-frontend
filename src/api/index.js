@@ -1,9 +1,9 @@
 import axios from "axios";
 
-const callApi = async (method, path, type, data, jwt) => {
+const callApi = async (method, path, data, jwt) => {
 	const headers = {
-		Authorization: jwt, //추후 로그인시에만 피드 작성을 위함
-		"Content-Type": type, //이 부분이 뭐였지??
+		Authorization: jwt ? `jwt ${jwt}` : null,
+		"Content-Type": method === "post" && path === "/feeds/" ? "multipart/form-data" : "application/json",
 	};
 	const baseUrl = "http://ec2-18-215-16-128.compute-1.amazonaws.com:8000";
 	const fullUrl = `${baseUrl}${path}`;
@@ -15,6 +15,11 @@ const callApi = async (method, path, type, data, jwt) => {
 };
 
 export default {
-	feeds: () => callApi("get", `/post`, "application/json"),
-	createFeed: form => callApi("post", `/post`, "multipart/form-data", form),
+	feeds: () => callApi("get", "/post"),
+	createFeed: (form, token) => callApi("post", "/post", form, token),
+	login: form => callApi("post", "/account/login", form),
+	createAccount: form => callApi("post", "/account/register", form),
+	userInfo: token => callApi("get", "/mypage", null, token),
+	userUpdate: (form, token) => callApi("patch", "/mypage", form, token),
+	userDelete: token => callApi("delete", "/mypage", null, token),
 };

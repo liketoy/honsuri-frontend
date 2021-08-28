@@ -1,7 +1,8 @@
 import axios from "axios";
 import Vue from "vue";
 import Vuex from "vuex";
-import api from "../api/index";
+import api from "../api";
+import router from "../router";
 
 Vue.use(Vuex);
 
@@ -10,11 +11,28 @@ export default new Vuex.Store({
 		feeds: [],
 		account: null,
 		isLiked: false,
+		token: null,
+		isLoggedIn: false,
+		userInfo: null,
 	},
 	mutations: {
 		//feeds를 가져온다.
 		SET_FEEDS(state, feeds) {
 			state.feeds = feeds;
+		},
+		LOGIN(state, payload) {
+			state.isLoggedIn = true;
+			state.token = payload.token;
+			state.userInfo = payload.userData;
+		},
+		LOGOUT(state) {
+			state.isLoggedIn = false;
+			state.token = null;
+			state.userInfo = null;
+			router.push({ name: "Home" });
+		},
+		SET_USER(state, payload) {
+			state.userInfo = payload.data;
 		},
 	},
 	actions: {
@@ -23,13 +41,57 @@ export default new Vuex.Store({
 				commit("SET_FEEDS", response.data);
 			});
 		},
-		async POST_FEED({ dispatch }, obj) {
+		async POST_FEED({ state, dispatch }, obj) {
 			const formData = new FormData();
 			formData.append("content", obj.content);
-			formData.append("photos", obj.photos);
-			const res = await api.createFeed(formData);
+			formData.append("image", obj.image);
+			const res = await api.createFeed(formData, state.token);
 			if (res.status === 201) {
 				dispatch("GET_FEEDS");
+			}
+		},
+
+		async POST_LOGIN({ commit }, obj) {
+			try {
+				const {
+					data: { token },
+				} = await api.login(obj);
+				if (token) {
+					const { data: userData } = await api.userInfo(token);
+					commit("LOGIN", { token, userData });
+					router.push({ name: "Home" });
+				}
+			} catch (e) {
+				console.warn(e);
+			}
+		},
+
+		async POST_SIGNUP(_, obj) {
+			try {
+				const { status } = await api.createAccount(obj);
+				if (status === 201) {
+					router.push({ name: "SignIn" });
+				}
+			} catch (e) {
+				console.warn(e);
+			}
+		},
+		async PATCH_USER({ state, commit }, obj) {
+			try {
+				const { status, data } = await api.userUpdate(obj, state.token);
+				if (status === 200) {
+					commit("SET_USER", { data });
+				}
+			} catch (e) {
+				console.warn(e);
+			}
+		},
+		async DELETE_USER({ state, commit }) {
+			try {
+				await api.userDelete(state.token);
+				commit("LOGOUT");
+			} catch (e) {
+				console.warn(e);
 			}
 		},
 	},
