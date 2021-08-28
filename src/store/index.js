@@ -45,9 +45,13 @@ export default new Vuex.Store({
 			const formData = new FormData();
 			formData.append("content", obj.content);
 			formData.append("image", obj.image);
-			const res = await api.createFeed(formData, state.token);
-			if (res.status === 201) {
-				dispatch("GET_FEEDS");
+			if (state.token === null) {
+				alert("로그인해야합니다.");
+			} else {
+				const res = await api.createFeed(formData, state.token);
+				if (res.status === 201) {
+					dispatch("GET_FEEDS");
+				}
 			}
 		},
 
