@@ -8,6 +8,18 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
 	state: {
+		audio: [],
+		audioPlayed: [],
+		musicIsPlaying: [],
+		musics: [],
+		recipe: [],
+		recipes: [],
+		sojuList: [],
+		liquorList: [],
+		beerList: [],
+		wineList: [],
+		fruitList: [],
+		bookmark: null,
 		feeds: [],
 		account: null,
 		isLiked: false,
@@ -44,6 +56,39 @@ export default new Vuex.Store({
 		recommend_cock_photo: "",
 	},
 	mutations: {
+		setMusics(state, data) {
+			state.musics = data.data;
+		},
+		setRecipeOne(state, data) {
+			state.recipe = data.data[0];
+		},
+		setRecipes(state, data) {
+			state.recipes = data.data;
+		},
+		setSojuRecipes(state, data) {
+			state.sojuList = data;
+		},
+		setLiquorRecipes(state, data) {
+			state.liquorList = data;
+		},
+		setBeerRecipes(state, data) {
+			state.beerList = data;
+		},
+		setWineRecipes(state, data) {
+			state.wineList = data;
+		},
+		setFruitRecipes(state, data) {
+			state.fruitList = data;
+		},
+		setMusicPlaying(state) {
+			for (var i = 0; i < 4; i++) {
+				state.musicIsPlaying[i] = false;
+			}
+		},
+		// setBookmark(state, data) {
+		// 	console.log(data.data);
+		// 	state.bookmark = data.data.bookmark;
+		// },
 		//feeds를 가져온다.
 		SET_FEEDS(state, feeds) {
 			state.feeds = feeds;
@@ -71,6 +116,71 @@ export default new Vuex.Store({
 		},
 	},
 	actions: {
+		async getMusics({ commit }) {
+			const data = await api.musics();
+			commit("setMusics", data);
+		},
+		async getRecipes({ state, commit }) {
+			const data = await api.recipes(state.token);
+			commit("setRecipes", data);
+			// commit("setBookmark", data);
+		},
+		async getRecipesForBase({ state, commit }) {
+			const data = await api.recipes(state.token);
+			const sojulist = [];
+			const liquorList = [];
+			const beerList = [];
+			const wineList = [];
+			const fruitList = [];
+			for (var i = 0; i < data.data.length; i++) {
+				if (data.data[i].base[0].name == "소주") {
+					sojulist.push(data.data[i]);
+				} else if (data.data[i].base[0].name == "양주") {
+					liquorList.push(data.data[i]);
+				} else if (data.data[i].base[0].name == "맥주") {
+					beerList.push(data.data[i]);
+				} else if (data.data[i].base[0].name == "와인") {
+					wineList.push(data.data[i]);
+				} else if (data.data[i].base[0].name == "과일소주") {
+					fruitList.push(data.data[i]);
+				}
+			}
+			commit("setSojuRecipes", sojulist);
+			commit("setLiquorRecipes", liquorList);
+			commit("setBeerRecipes", beerList);
+			commit("setWineRecipes", wineList);
+			commit("setFruitRecipes", fruitList);
+		},
+		async getRecipeOne({ state, commit }, id) {
+			const data = await api.recipe(id, state.token);
+			commit("setRecipeOne", data);
+		},
+		async getMusicPlaying({ commit }) {
+			commit("setMusicPlaying");
+		},
+		// async POST_SIGNUP(_, obj)
+		async CREAT_BOOKMARK({ state }, obj) {
+			// console.log(obj.message);
+
+			// console.log(obj.message);
+			// console.log(state.token);
+			// console.log(obj.message);
+
+			// const formData = new FormData();
+			// formData.append("message", obj.message);
+			// console.log(id);
+
+			const res = await api.bookmark(obj.id, state.token);
+			// console.log("북마크 등록 성공");
+			// console.log(res);
+
+			if (res.status === 200) {
+				// console.log("북마크 등록 성공");
+			} else {
+				// console.log("북마크 등록 실패");
+			}
+		},
+
 		async GET_FEEDS({ commit }) {
 			axios.get("http://ec2-18-215-16-128.compute-1.amazonaws.com:8000/post").then(response => {
 				commit("SET_FEEDS", response.data);

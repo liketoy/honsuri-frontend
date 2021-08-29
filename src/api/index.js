@@ -18,6 +18,10 @@ const callApi = async (method, path, data, jwt) => {
 };
 
 export default {
+	musics: () => callApi("get", `/music`),
+	recipe: (id = null, token) => callApi("get", `/recipes/${id}`, null, token),
+	recipes: token => callApi("get", `/recipes`, null, token),
+	bookmark: (id, token) => callApi("post", `/recipes/${id}/bookmark`, null, token),
 	feeds: () => callApi("get", "/post"),
 	createFeed: (form, token) => callApi("post", "/post", form, token),
 	login: form => callApi("post", "/account/login", form),
