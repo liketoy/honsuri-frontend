@@ -64,14 +64,14 @@ export default new Vuex.Store({
 				}
 			}
 		},
-		async POST_LOGIN({ dispatch }, obj) {
+		async POST_LOGIN(_, obj) {
 			try {
 				const {
 					data: { token },
 				} = await api.login(obj);
 				if (token) {
 					localStorage.setItem("token", token);
-					dispatch("GET_USER");
+					// dispatch("GET_USER");
 					router.push({ name: "Home" });
 				}
 			} catch (e) {

@@ -3,10 +3,10 @@
 		<TheHeaderVue />
 		<div class="sign__container">
 			<h2 class="sign__title">로그인</h2>
-			<input class="input__box" v-model="email" type="email" placeholder="이메일을 입력해 주세요." />
+			<input class="input__box" v-model="username" type="text" placeholder="이메일을 입력해 주세요." />
 			<input class="input__box" v-model="password" type="password" placeholder="비밀번호를 입력해 주세요." />
 			<label for="auto_login"><input type="checkbox" id="auto_login" />자동 로그인</label>
-			<input class="submit__box" type="button" value="로그인" @click="login({ email, password })" />
+			<input class="submit__box" type="button" value="로그인" @click="login({ username, password })" />
 			<div class="users__btns">
 				<router-link class="sign__up" to="/users/findid">아이디 찾기</router-link>
 				<router-link class="sign__up" to="/users/signup">회원가입</router-link>
@@ -82,7 +82,7 @@
 		name: "SignIn",
 		data() {
 			return {
-				email: "",
+				username: "",
 				password: "",
 			};
 		},
