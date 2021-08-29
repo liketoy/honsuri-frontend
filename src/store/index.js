@@ -66,7 +66,6 @@ export default new Vuex.Store({
 		},
 		async POST_LOGIN({ dispatch }, obj) {
 			try {
-				console.log(obj);
 				const {
 					data: { token },
 				} = await api.login(obj);
