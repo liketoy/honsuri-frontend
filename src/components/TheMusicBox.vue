@@ -3,10 +3,10 @@
 		<div class="x__wrapper" @click="closeMusicBox">
 			<span class="x__btn">x</span>
 		</div>
-		<div class="musiccard__wrapper full__container">
+		<div class="musiccard__wrapper container">
 			<h4>음악듣기</h4>
 			<div class="musiccard__container">
-				<TheMusicCardVue v-for="index in 8" :key="index" />
+				<TheMusicCardVue v-for="music in musics" :key="music.id" :music="music" />
 			</div>
 		</div>
 	</div>
@@ -18,7 +18,7 @@
 		position: absolute;
 		width: 100%;
 		bottom: 0;
-		height: 350px;
+		height: 250px;
 		background-color: rgba(255, 255, 255, 0.1);
 		backdrop-filter: blur(30px);
 	}
@@ -43,6 +43,19 @@
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
+		margin-top: 18px;
+	}
+	.container {
+		position: fixed;
+		width: 100%;
+	}
+	@media (min-width: 1280px) {
+		.container {
+			/* width: 1280px; */
+			min-width: 1280px;
+			left: 50%;
+			margin-left: -640px;
+		}
 	}
 	.musiccard__wrapper h4 {
 		color: #f2f2f2;
@@ -50,9 +63,8 @@
 	}
 	.musiccard__container {
 		width: 100%;
-		display: grid;
-		grid-template-columns: repeat(4, 1fr);
-		column-gap: 100px;
+		display: flex;
+		column-gap: 28px;
 		row-gap: 40px;
 		margin-top: 30px;
 	}
@@ -60,7 +72,7 @@
 
 <script>
 	import TheMusicCardVue from "./TheMusicCard.vue";
-
+	// import api from "../api/index";
 	export default {
 		name: "TheMusicBox",
 		components: {
@@ -71,6 +83,14 @@
 			closeMusicBox: function () {
 				this.$emit("updateIsActive");
 			},
+		},
+		computed: {
+			musics() {
+				return this.$store.state.musics;
+			},
+		},
+		mounted() {
+			this.$store.dispatch("getMusics");
 		},
 	};
 </script>
