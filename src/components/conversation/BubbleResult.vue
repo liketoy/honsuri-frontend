@@ -3,7 +3,7 @@
 		<div class="container pointer">
 			<img class="honsuri_img" src="@/assets/icons/honsuri.png" />
 			<a class="honsuri_text" @click="GET_RECOMMEND_COCKTAIL()">
-				여기를 누르면 당신을 위한 칵테일을 추천해드릴게요...
+				그렇군요... 여기를 누르면 손님을 위한 칵테일을 추천해드릴게요.
 			</a>
 		</div>
 		<div class="container none_img_margin">
