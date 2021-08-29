@@ -17,6 +17,9 @@ const callApi = async (method, path, data, jwt) => {
 export default {
 	feeds: () => callApi("get", "/post"),
 	createFeed: (form, token) => callApi("post", "/post", form, token),
+	createLike: (id, token) => callApi("post", "/post/like/post/" + id, null, token),
+	comments: id => callApi("get", "/post/comment/" + id, null),
+	createComments: (form, id, token) => callApi("post", "/post/comment/" + id, form, token),
 	login: form => callApi("post", "/account/login", form),
 	createAccount: form => callApi("post", "/account/register", form),
 	userInfo: token => callApi("get", "/mypage", null, token),
