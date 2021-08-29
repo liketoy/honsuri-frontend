@@ -7,8 +7,14 @@
 				<h1>방명록</h1>
 			</div>
 			<div class="feeds__search">
-				<input type="text" class="feeds__input" style="height: 100%" placeholder="글 내용, 작성자 검색" />
-				<img class="search__icon" src="@/assets/icons/search.png" alt="searchIcon" />
+				<input
+					type="text"
+					class="feeds__input"
+					v-model="searchContent"
+					style="height: 100%"
+					placeholder="글 내용 검색"
+				/>
+				<img class="search__icon" src="@/assets/icons/search.png" alt="searchIcon" @click="searchFeed" />
 			</div>
 			<div class="feeds__textbox">
 				<input type="text" class="feeds__input" v-model="content" placeholder="새로운 소식을 남겨보세요." />
@@ -28,7 +34,8 @@
 					<input type="button" class="attachimage" @click="onSubmit" value="제출" style="display: inline" />
 				</div>
 			</div>
-			<TheFeedCardVue v-for="feed in feeds" :key="feed.id" :feed="feed" />
+			<wrap v-if="onlyOneFeed"><TheFeedCardVue /></wrap>
+			<wrap v-else><TheFeedCardVue v-for="feed in feeds" :key="feed.id" :feed="feed" /></wrap>
 		</div>
 	</div>
 </template>
@@ -115,6 +122,9 @@
 				black: "#191919",
 				content: "",
 				selectedFile: "",
+				searchContent: "",
+				Url: "http://ec2-18-215-16-128.compute-1.amazonaws.com:8000/post?keyword=",
+				keywordUrl: "", //댓글쓰기 누르면 반복문을 멈추고 피드가 하나만 보이도록 하기 위함
 			};
 		},
 		computed: {
@@ -129,10 +139,17 @@
 		methods: {
 			onInputImage: function () {
 				this.selectedFile = this.$refs.feedImage.files[0];
-				console.log("온풋이미지");
+				console.log(this.$refs.feedImage.files[0]);
 			},
 			onSubmit: function () {
 				this.$store.dispatch("POST_FEED", { content: this.content, image: this.selectedFile });
+			},
+			searchFeed: function () {
+				this.keywordUrl = this.Url + this.searchContent;
+				console.log(this.keywordUrl);
+				this.$store.dispatch("GET_FEEDS", this.keywordUrl);
+				//검색어 중복을 위한 변수 초기화
+				this.keywordUrl = "";
 			},
 		},
 		mounted() {

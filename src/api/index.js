@@ -5,10 +5,7 @@ const callApi = async (method, path, data, jwt) => {
 		Authorization: jwt ? `jwt ${jwt}` : null,
 		"Content-Type": method === "post" && path === "/feeds/" ? "multipart/form-data" : "application/json",
 	};
-	const baseUrl =
-		process.env.NODE_ENV === "production"
-			? "http://ec2-18-215-16-128.compute-1.amazonaws.com:8000"
-			: "http://ec2-18-215-16-128.compute-1.amazonaws.com:8000";
+	const baseUrl = "http://ec2-18-215-16-128.compute-1.amazonaws.com:8000";
 	const fullUrl = `${baseUrl}${path}`;
 	if (method === "get") {
 		return axios[method](fullUrl, { headers });
@@ -24,6 +21,9 @@ export default {
 	bookmark: (id, token) => callApi("post", `/recipes/${id}/bookmark`, null, token),
 	feeds: () => callApi("get", "/post"),
 	createFeed: (form, token) => callApi("post", "/post", form, token),
+	createLike: (id, token) => callApi("post", "/post/like/post/" + id, null, token),
+	comments: id => callApi("get", "/post/comment/" + id, null),
+	createComments: (form, id, token) => callApi("post", "/post/comment/" + id, form, token),
 	login: form => callApi("post", "/account/login", form),
 	createAccount: form => callApi("post", "/account/register", form),
 	userInfo: token => callApi("get", "/mypage", null, token),

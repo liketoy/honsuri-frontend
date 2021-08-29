@@ -10,8 +10,8 @@ export default new Vuex.Store({
 	state: {
 		audio: [],
 		audioPlayed: [],
-		musicIsPlaying: [],
-		musics: [],
+		// musicIsPlaying: [],
+		// musics: [],
 		recipe: [],
 		recipes: [],
 		sojuList: [],
@@ -21,6 +21,7 @@ export default new Vuex.Store({
 		fruitList: [],
 		bookmark: null,
 		feeds: [],
+		comments: [],
 		account: null,
 		isLiked: false,
 		token: null,
@@ -56,9 +57,9 @@ export default new Vuex.Store({
 		recommend_cock_photo: "",
 	},
 	mutations: {
-		setMusics(state, data) {
-			state.musics = data.data;
-		},
+		// setMusics(state, data) {
+		// 	state.musics = data.data;
+		// },
 		setRecipeOne(state, data) {
 			state.recipe = data.data[0];
 		},
@@ -80,11 +81,11 @@ export default new Vuex.Store({
 		setFruitRecipes(state, data) {
 			state.fruitList = data;
 		},
-		setMusicPlaying(state) {
-			for (var i = 0; i < 4; i++) {
-				state.musicIsPlaying[i] = false;
-			}
-		},
+		// setMusicPlaying(state) {
+		// 	for (var i = 0; i < 4; i++) {
+		// 		state.musicIsPlaying[i] = false;
+		// 	}
+		// },
 		// setBookmark(state, data) {
 		// 	console.log(data.data);
 		// 	state.bookmark = data.data.bookmark;
@@ -92,6 +93,9 @@ export default new Vuex.Store({
 		//feeds를 가져온다.
 		SET_FEEDS(state, feeds) {
 			state.feeds = feeds;
+		},
+		SET_COMMENTS(state, comments) {
+			state.comments = comments;
 		},
 		LOGIN(state, payload) {
 			state.isLoggedIn = true;
@@ -116,10 +120,10 @@ export default new Vuex.Store({
 		},
 	},
 	actions: {
-		async getMusics({ commit }) {
-			const data = await api.musics();
-			commit("setMusics", data);
-		},
+		// async getMusics({ commit }) {
+		// 	const data = await api.musics();
+		// 	commit("setMusics", data);
+		// },
 		async getRecipes({ state, commit }) {
 			const data = await api.recipes(state.token);
 			commit("setRecipes", data);
@@ -155,9 +159,9 @@ export default new Vuex.Store({
 			const data = await api.recipe(id, state.token);
 			commit("setRecipeOne", data);
 		},
-		async getMusicPlaying({ commit }) {
-			commit("setMusicPlaying");
-		},
+		// async getMusicPlaying({ commit }) {
+		// 	commit("setMusicPlaying");
+		// },
 		// async POST_SIGNUP(_, obj)
 		async CREAT_BOOKMARK({ state }, obj) {
 			// console.log(obj.message);
@@ -180,9 +184,8 @@ export default new Vuex.Store({
 				// console.log("북마크 등록 실패");
 			}
 		},
-
-		async GET_FEEDS({ commit }) {
-			axios.get("http://ec2-18-215-16-128.compute-1.amazonaws.com:8000/post").then(response => {
+		async GET_FEEDS({ commit }, Url = "http://ec2-18-215-16-128.compute-1.amazonaws.com:8000/post") {
+			axios.get(Url).then(response => {
 				commit("SET_FEEDS", response.data);
 			});
 		},
@@ -190,6 +193,7 @@ export default new Vuex.Store({
 			const formData = new FormData();
 			formData.append("content", obj.content);
 			formData.append("image", obj.image);
+			console.log(obj.image);
 			if (state.token === null) {
 				alert("로그인해야합니다.");
 			} else {
@@ -197,6 +201,19 @@ export default new Vuex.Store({
 				if (res.status === 201) {
 					dispatch("GET_FEEDS");
 				}
+			}
+		},
+		async GET_COMMENTS({ commit }, id) {
+			axios.get("http://ec2-18-215-16-128.compute-1.amazonaws.com:8000/post/" + id + "/comment").then(response => {
+				commit("SET_COMMENTS", response.data);
+			});
+		},
+		async POST_COMMENT({ state, dispatch }, obj) {
+			const formData = new FormData();
+			formData.append("commentContent", obj.commentContent);
+			const res = await api.createComments(formData, state.token);
+			if (res.status === 201) {
+				dispatch("GET_COMMENTS");
 			}
 		},
 		async POST_LOGIN({ dispatch }, obj) {

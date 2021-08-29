@@ -26,16 +26,33 @@
 			</div>
 		</div>
 		<div class="btn__container">
+			<!--v-if="$store.state.isLoggedIn"생략-->
 			<div class="card__btn">
 				<div class="btn">
-					<img :src="imgSrc" alt="heart" style="cursor: pointer" @click="changeHeart" />
+					<img :src="LikeSrc" alt="heart" style="cursor: pointer" @click="Like" />
 					<span>좋아요</span>
 				</div>
 				<div class="btn">
-					<img src="@/assets/icons/speech-bubble.png" alt="bubble" />
+					<img src="@/assets/icons/speech-bubble.png" alt="bubble" style="cursor: pointer" @click="AvailComment" />
 					<span>댓글쓰기</span>
 				</div>
 			</div>
+		</div>
+		<div class="comment_container" v-show="commentAvail">
+			<div class="commenter__avatar"></div>
+			<div class="commenter__content">
+				<wrap
+					><input
+						type="text"
+						class="input__comment"
+						v-model="commentContent"
+						placeholder="댓글을 입력하세요."
+						@keyup.enter="onSubmitComment"
+				/></wrap>
+				<!-- 생략 -->
+			</div>
+			<div class="comments_list"></div>
+			<!--댓글 component를 v-for로 보여줘야한다 하 하 하-->
 		</div>
 	</div>
 </template>
@@ -125,6 +142,36 @@
 		height: 20px;
 		margin-right: 10px;
 	}
+	.commenter__avatar {
+		width: 50px;
+		height: 50px;
+		background: #dbdbdb;
+		border-radius: 50%;
+		display: flex;
+	}
+
+	.comment_container {
+		padding: 20px;
+		min-width: 560px;
+		display: flex;
+		flex-direction: row;
+		align-items: flex-start;
+		float: left;
+		align-content: center;
+	}
+
+	.input__comment {
+		margin-left: 10px;
+		width: 510px;
+		background-color: #ededed;
+		border-radius: 10px;
+		opacity: 1;
+		height: 30px;
+		text-align: left;
+		font-size: 16px;
+		padding: 10px;
+		border: none;
+	}
 </style>
 
 <script>
@@ -134,23 +181,32 @@
 		data: function () {
 			return {
 				isLiked: false,
-				//좋아요는 초기에는 안 눌러져있음
-				imgSrc: require("@/assets/icons/gray_heart.png"),
+				LikeSrc: require("@/assets/icons/gray_heart.png"),
 				heartSrc: require("@/assets/icons/full_heart.png"),
 				grayheartSrc: require("@/assets/icons/gray_heart.png"),
+				imgSrc: "http://ec2-18-215-16-128.compute-1.amazonaws.com:8000",
+				commentAvail: false,
+				commentContent: "",
+				//댓글쓰기 누르면 true로 바꿔줄 예정,
 			};
 		},
 		methods: {
 			// 1. birth 관련 조건이 맞으면 버튼 활성화
-			changeHeart: function () {
+			Like: function () {
 				this.isLiked = !this.isLiked;
 				if (this.isLiked == true) {
 					this.feed.like_count += 1;
-					this.imgSrc = this.heartSrc;
+					this.LikeSrc = this.heartSrc;
 				} else {
 					this.feed.like_count -= 1;
-					this.imgSrc = this.grayheartSrc;
+					this.LikeSrc = this.grayheartSrc;
 				}
+			},
+			AvailComment: function () {
+				this.commentAvail = !this.commentAvail;
+			},
+			onSubmitComment: function () {
+				this.$store.dispatch("POST_COMMENT", { commentContent: this.commentContent });
 			},
 		},
 		filters: {
