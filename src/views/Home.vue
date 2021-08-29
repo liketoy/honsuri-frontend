@@ -67,7 +67,6 @@
 					licenseKey: "YOUR_KEY_HEERE",
 					anchors: ["01", "02", "03", "04", "05"],
 					navigation: true,
-					scrollOverflow: true,
 					scrollBar: false,
 				},
 			};
