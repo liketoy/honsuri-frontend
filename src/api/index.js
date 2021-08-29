@@ -5,7 +5,10 @@ const callApi = async (method, path, data, jwt) => {
 		Authorization: jwt ? `jwt ${jwt}` : null,
 		"Content-Type": method === "post" && path === "/feeds/" ? "multipart/form-data" : "application/json",
 	};
-	const baseUrl = "http://ec2-18-215-16-128.compute-1.amazonaws.com:8000";
+	const baseUrl =
+		process.env.NODE_ENV === "production"
+			? "http://ec2-18-215-16-128.compute-1.amazonaws.com:8000"
+			: "http://ec2-18-215-16-128.compute-1.amazonaws.com:8000";
 	const fullUrl = `${baseUrl}${path}`;
 	if (method === "get") {
 		return axios[method](fullUrl, { headers });
