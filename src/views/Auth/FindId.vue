@@ -2,14 +2,20 @@
 	<div class="sign__section">
 		<TheHeaderVue />
 		<div class="sign__container">
-			<h2 class="sign__title">로그인</h2>
-			<input class="input__box" v-model="email" type="email" placeholder="이메일을 입력해 주세요." />
-			<input class="input__box" v-model="password" type="password" placeholder="비밀번호를 입력해 주세요." />
-			<label for="auto_login"><input type="checkbox" id="auto_login" />자동 로그인</label>
-			<input class="submit__box" type="button" value="로그인" @click="login({ email, password })" />
-			<div class="users__btns">
-				<router-link class="sign__up" to="/users/findid">아이디 찾기</router-link>
-				<router-link class="sign__up" to="/users/signup">회원가입</router-link>
+			<h2 class="sign__title">아이디 찾기</h2>
+			<input class="input__box" v-model="name" type="text" placeholder="이름을 입력해 주세요." />
+			<input
+				class="input__box"
+				v-model="phone_number"
+				type="text"
+				placeholder="연락처를 입력해 주세요."
+				maxlength="11"
+				oninput="javascript: this.value = this.value.replace(/[^0-9]/g, '');"
+			/>
+			<input class="submit__box" type="button" value="아이디 찾기" @click="findId({ name, phone_number })" />
+			<div class="result__box" v-if="email">
+				<p>회원님의 이메일 주소를 찾았습니다.</p>
+				<p>{{ email }}</p>
 			</div>
 		</div>
 	</div>
@@ -73,25 +79,35 @@
 		font-size: 12px;
 		align-self: flex-end;
 	}
+	.result__box {
+		margin-top: 30px;
+		background: #191919;
+		color: #fff;
+		padding: 12px;
+	}
 </style>
 
 <script>
+	import { mapState } from "vuex";
 	import TheHeaderVue from "../../components/TheHeader.vue";
 
 	export default {
-		name: "SignIn",
+		name: "FindId",
 		data() {
 			return {
-				email: "",
-				password: "",
+				name: "",
+				phone_number: "",
 			};
+		},
+		computed: {
+			...mapState(["email"]),
 		},
 		components: {
 			TheHeaderVue,
 		},
 		methods: {
-			login: function (obj) {
-				this.$store.dispatch("POST_LOGIN", obj);
+			findId: function (obj) {
+				this.$store.dispatch("POST_FINDID", obj);
 			},
 		},
 	};

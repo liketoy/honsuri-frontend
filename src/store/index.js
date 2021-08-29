@@ -16,6 +16,7 @@ export default new Vuex.Store({
 		userInfo: null,
 		myPosts: [],
 		favs: [],
+		email: null,
 	},
 	mutations: {
 		//feeds를 가져온다.
@@ -93,6 +94,14 @@ export default new Vuex.Store({
 			const token = localStorage.getItem("token");
 			const { data: userData } = await api.userInfo(token);
 			commit("LOGIN", { token, userData });
+		},
+		async POST_FINDID({ state }, obj) {
+			const { status, data } = await api.userFindId(obj);
+			if (status === 401) {
+				alert("일치하는 EMAIL이 없습니다.");
+			} else if (status === 200) {
+				state.email = data[0];
+			}
 		},
 		async PATCH_USER({ state, commit }, obj) {
 			try {

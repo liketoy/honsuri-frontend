@@ -25,4 +25,5 @@ export default {
 	userPost: token => callApi("get", "/mypage/my-post", null, token),
 	userFav: token => callApi("get", "/mypage/my-favorite", null, token),
 	userPassword: (form, token) => callApi("patch", "/mypage/password", form, token),
+	userFindId: form => callApi("post", "/account/email-find", form),
 };
