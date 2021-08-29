@@ -19,6 +19,7 @@ export default new Vuex.Store({
 		beerList: [],
 		wineList: [],
 		fruitList: [],
+		bookmark: null,
 
 		feeds: [],
 		account: null,
@@ -59,6 +60,10 @@ export default new Vuex.Store({
 				state.musicIsPlaying[i] = false;
 			}
 		},
+		// setBookmark(state, data) {
+		// 	console.log(data.data);
+		// 	state.bookmark = data.data.bookmark;
+		// },
 		//feeds를 가져온다.
 		SET_FEEDS(state, feeds) {
 			state.feeds = feeds;
@@ -93,6 +98,7 @@ export default new Vuex.Store({
 		async getRecipes({ state, commit }) {
 			const data = await api.recipes(state.token);
 			commit("setRecipes", data);
+			// commit("setBookmark", data);
 		},
 		async getRecipesForBase({ state, commit }) {
 			const data = await api.recipes(state.token);
@@ -120,8 +126,8 @@ export default new Vuex.Store({
 			commit("setWineRecipes", wineList);
 			commit("setFruitRecipes", fruitList);
 		},
-		async getRecipeOne({ commit }, id) {
-			const data = await api.recipe(id);
+		async getRecipeOne({ state, commit }, id) {
+			const data = await api.recipe(id, state.token);
 			commit("setRecipeOne", data);
 		},
 		async getMusicPlaying({ commit }) {
@@ -141,12 +147,12 @@ export default new Vuex.Store({
 
 			const res = await api.bookmark(obj.id, state.token);
 			// console.log("북마크 등록 성공");
-			console.log(res);
+			// console.log(res);
 
 			if (res.status === 200) {
-				console.log("북마크 등록 성공");
+				// console.log("북마크 등록 성공");
 			} else {
-				console.log("북마크 등록 실패");
+				// console.log("북마크 등록 실패");
 			}
 		},
 

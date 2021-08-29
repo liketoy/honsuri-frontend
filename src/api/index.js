@@ -14,25 +14,11 @@ const callApi = async (method, path, data, jwt) => {
 	}
 };
 
-const callTestApi = async (method, path, data, jwt) => {
-	const headers = {
-		Authorization: jwt ? `jwt ${jwt}` : null,
-		"Content-Type": method === "post" ? "multipart/form-data" : "application/json",
-	};
-	const baseUrl = "http://ec2-18-215-16-128.compute-1.amazonaws.com:8000";
-	const fullUrl = `${baseUrl}${path}`;
-	if (method === "get") {
-		return axios[method](fullUrl, { headers });
-	} else {
-		return axios[method](fullUrl, data, { headers });
-	}
-};
-
 export default {
 	musics: () => callApi("get", `/music`),
-	recipe: (id = null) => callApi("get", `/recipes/${id}`),
+	recipe: (id = null, token) => callApi("get", `/recipes/${id}`, null, token),
 	recipes: token => callApi("get", `/recipes`, null, token),
-	bookmark: (id, token) => callTestApi("post", `/recipes/${id}/bookmark`, null, token),
+	bookmark: (id, token) => callApi("post", `/recipes/${id}/bookmark`, null, token),
 
 	feeds: () => callApi("get", "/post"),
 	createFeed: (form, token) => callApi("post", "/post", form, token),

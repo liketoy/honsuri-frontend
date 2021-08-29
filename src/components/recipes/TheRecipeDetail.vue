@@ -9,7 +9,14 @@
 				<div class="recipe_expain">
 					<div class="recipe_item">
 						<p class="recipe_title">{{ recipe.name }}</p>
-						<div class="bookmark" @click="createBook">+ My Favorite</div>
+						<div v-show="this.$store.state.token">
+							<div v-if="recipe.bookmark === true">
+								<div class="bookmark" @click="createBook">My Favorite</div>
+							</div>
+							<div v-else>
+								<div class="bookmark_none" @click="createBook">+ My Favorite</div>
+							</div>
+						</div>
 					</div>
 					<div class="line"></div>
 					<p class="recipe_sub_title">INGREDIENTS</p>
@@ -83,10 +90,10 @@
 		align-items: center;
 		/* align-content: center; */
 	}
+	.bookmark_none,
 	.bookmark {
 		width: 113px;
 		height: 34px;
-		background: #111111;
 		border-radius: 4px 4px 4px 4px;
 		color: #ffffff;
 		text-align: center;
@@ -95,6 +102,12 @@
 		font-size: 16px;
 		font-weight: 300;
 		cursor: pointer;
+	}
+	.bookmark_none {
+		background: #111111;
+	}
+	.bookmark {
+		background: #ff4343;
 	}
 	.recipe_expain .recipe_title,
 	.recipe_detail {
@@ -150,26 +163,14 @@
 		},
 		data() {
 			return {
-				text: "CREATE_BOOKMARK",
+				// text: "CREATE_BOOKMARK",
 				black: "#191919",
 				count: 0,
 				thisRecipe: [],
+				// bookmark: null,
 			};
 		},
-		methods: {
-			createBook: function () {
-				this.$store.dispatch("CREAT_BOOKMARK", { id: this.recipe.id });
-				// const url = `http://ec2-18-215-16-128.compute-1.amazonaws.com:8000/recipes/${this.recipe.id}/bookmark`;
-				// axios.post(
-				// 	url,
-				// 	{},
-				// 	{
-				// 		withCredentials: true,
-				// 	},
-				// );
-				// console.log("??");
-			},
-		},
+
 		computed: {
 			recipe() {
 				return this.$store.state.recipe;
@@ -177,9 +178,31 @@
 			param: function () {
 				return this.$route.params;
 			},
+			bookmark() {
+				return this.$store.state.bookmark;
+			},
+		},
+		methods: {
+			createBook: function () {
+				this.$store.state.bookmark = this.recipe.bookmark;
+
+				if (!this.$store.state.recipe.bookmark) {
+					this.$store.state.recipe.bookmark = true;
+				} else {
+					this.$store.state.recipe.bookmark = false;
+				}
+				console.log(this.$store.state.bookmark);
+				this.$store.dispatch("CREAT_BOOKMARK", { id: this.recipe.id });
+
+				// console.log("!!");
+				// console.log(this.recipe.bookmark);
+			},
 		},
 		mounted() {
 			this.$store.dispatch("getRecipeOne", this.$route.params["id"]);
+			// this.bookmark = this.recipe.bookmark;
+			// console.log("!!");
+			console.log(this.recipe.bookmark);
 		},
 		created() {
 			this.count = this.recipe.how_to_mix.split("/n").length;

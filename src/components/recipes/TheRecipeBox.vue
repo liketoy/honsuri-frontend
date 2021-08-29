@@ -14,6 +14,7 @@
 
 				<div class="recipe_title">
 					<p>{{ recipe.name }}</p>
+					<div>{{ recipe.bookmark }}</div>
 					<!-- <div>{{ this.$store.state.token }}</div> -->
 				</div>
 			</router-link>
