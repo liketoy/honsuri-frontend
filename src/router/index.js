@@ -117,6 +117,11 @@ const routes = [
 		component: () => import(/* webpackChunkName: "me" */ "../views/Users/Fav.vue"),
 		beforeEnter: onlyAuthUser,
 	},
+	{
+		path: "/conversation",
+		name: "Conversation",
+		component: () => import(/* webpackChunkName: "conversation" */ "../views/Conversation.vue"),
+	},
 ];
 
 const router = new VueRouter({

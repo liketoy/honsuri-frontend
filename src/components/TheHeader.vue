@@ -8,7 +8,7 @@
 				<router-link to="/recipes">
 					<span>레시피</span>
 				</router-link>
-				<router-link to="/">
+				<router-link to="/conversation">
 					<span>대화하기</span>
 				</router-link>
 				<router-link to="/feeds">
