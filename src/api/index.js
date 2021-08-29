@@ -7,8 +7,8 @@ const callApi = async (method, path, data, jwt) => {
 	};
 	const baseUrl =
 		process.env.NODE_ENV === "production"
-			? "http://photoshoot-backend.herokuapp.com/api/v1"
-			: "http://photoshoot-backend.herokuapp.com/api/v1";
+			? "http://ec2-18-215-16-128.compute-1.amazonaws.com:8000"
+			: "http://ec2-18-215-16-128.compute-1.amazonaws.com:8000";
 	const fullUrl = `${baseUrl}${path}`;
 	if (method === "get") {
 		return axios[method](fullUrl, { headers });
@@ -20,7 +20,7 @@ const callApi = async (method, path, data, jwt) => {
 export default {
 	feeds: () => callApi("get", "/post"),
 	createFeed: (form, token) => callApi("post", "/post", form, token),
-	login: form => callApi("post", "/users/login/", form),
+	login: form => callApi("post", "/account/login", form),
 	createAccount: form => callApi("post", "/account/register", form),
 	userInfo: token => callApi("get", "/mypage", null, token),
 	userUpdate: (form, token) => callApi("patch", "/mypage", form, token),
