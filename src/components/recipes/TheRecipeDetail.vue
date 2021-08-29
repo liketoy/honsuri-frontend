@@ -158,7 +158,7 @@
 		},
 		methods: {
 			createBook: function () {
-				// this.$store.dispatch("CREAT_BOOKMARK", { message: this.text, id: this.recipe.id });
+				this.$store.dispatch("CREAT_BOOKMARK", { id: this.recipe.id });
 				// const url = `http://ec2-18-215-16-128.compute-1.amazonaws.com:8000/recipes/${this.recipe.id}/bookmark`;
 				// axios.post(
 				// 	url,

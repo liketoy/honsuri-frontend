@@ -129,22 +129,21 @@ export default new Vuex.Store({
 		},
 		// async POST_SIGNUP(_, obj)
 		async CREAT_BOOKMARK({ state }, obj) {
-			console.log(obj.id);
 			// console.log(obj.message);
 
 			// console.log(obj.message);
 			// console.log(state.token);
 			// console.log(obj.message);
 
-			const formData = new FormData();
-			formData.append("message", obj.message);
+			// const formData = new FormData();
+			// formData.append("message", obj.message);
 			// console.log(id);
 
-			const res = await api.createFeed(obj.id, state.token);
+			const res = await api.bookmark(obj.id, state.token);
 			// console.log("북마크 등록 성공");
-			console.log("엥");
+			console.log(res);
 
-			if (res.status === 201) {
+			if (res.status === 200) {
 				console.log("북마크 등록 성공");
 			} else {
 				console.log("북마크 등록 실패");

@@ -67,7 +67,7 @@
 				audio: null,
 				isPlaying: false,
 				photos: require("@/assets/musicImg/" + this.music.photo),
-				musictFile: require("@/assets/audio/" + this.music.file_name),
+				// musictFile: require("@/assets/audio/" + this.music.file_name),
 			};
 		},
 		computed: {
