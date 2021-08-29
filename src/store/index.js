@@ -21,6 +21,15 @@ export default new Vuex.Store({
 			P: 0,
 			J: 0,
 		},
+		// user의 mbti 정보
+		mbti_result: "",
+		// true인 경우 추천 칵테일을 보여줌
+		recommend: false,
+		// recommend cocktail 에 대한 정보
+		recommend_comment: "",
+		recommend_cock_id: 999,
+		recommend_cock: "",
+		recommend_cock_photo: "",
 	},
 	mutations: {},
 	actions: {},

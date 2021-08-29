@@ -1,5 +1,5 @@
 <template>
-	<div class="conversation_container">
+	<div class="container">
 		<div class="conversation_header">
 			<TheHeaderVue :color="black" />
 		</div>
@@ -8,10 +8,17 @@
 </template>
 
 <style scoped>
-	.conversation_container {
+	.container {
 		background-color: #ededed;
+
+		padding-top: 130px;
+		padding-bottom: 50px;
 	}
 	.conversation_header {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
 		width: 1920px;
 		height: 80px;
 		background: #ffffff;
