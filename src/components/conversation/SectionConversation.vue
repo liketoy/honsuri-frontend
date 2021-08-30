@@ -10,7 +10,6 @@
 <style scoped>
 	.conversation_container {
 		width: 1280px;
-		height: 800px;
 		background-color: #ffffff !important;
 		box-shadow: 1px 1px 2px #00000029;
 		border-radius: 8px;

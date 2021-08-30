@@ -10,8 +10,10 @@
 <style scoped>
 	.container {
 		background-color: #ededed;
-		padding-top: 130px;
-		padding-bottom: 50px;
+		height: 100vh;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 	.conversation_header {
 		position: fixed;
