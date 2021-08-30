@@ -19,7 +19,7 @@
 			<div class="honsuri_text" v-if="recommend">
 				<img
 					class="cock_img"
-					v-bind:src="require(`@/assets/images/mbti_cock/${recommend_cock_photo}`)"
+					v-bind:src="require(`@/assets/recipeImg/${recommend_cock_photo}`)"
 					width="230px"
 					height="235px"
 				/>
@@ -108,12 +108,12 @@
 						params: mbti_result,
 					})
 					.then(res => {
-						console.log("불러오기 성공");
+						// console.log("불러오기 성공");
 						this.$store.state.recommend_comment = res.data[0].comment;
 						this.$store.state.recommend_cock_id = res.data[0].recipe.id;
 						this.$store.state.recommend_cock = res.data[0].recipe.name;
 						this.$store.state.recommend_cock_photo = res.data[0].recipe.photo;
-						console.log(this.$store.state.recommend_cock_photo);
+						// console.log(this.$store.state.recommend_cock_photo);
 						// console.log(res.data[0].comment); // 코멘트
 						// console.log(res.data[0].recipe.id); // 게시물 id
 						// console.log(res.data[0].recipe.name); // 게시물 이름
@@ -121,7 +121,7 @@
 						this.recommend = true; // true 값일 때 결과값을 보여주는 bubble 이 show 됨
 					})
 					.catch(err => {
-						console.log("불러오기 실패");
+						// console.log("불러오기 실패");
 						console.log(err);
 					});
 			},

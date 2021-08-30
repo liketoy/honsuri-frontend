@@ -85,15 +85,15 @@
 				// Q. 함수 내에서 mapState를 사용하는 방법이 없을까?! 코드 가독성이 떨어져서 슬프군.
 				// Object.keys(this.$store.state.answer)[0] 은 MBTI 유형이 담긴 값 (E I S N F J ... 등)
 				this.$store.state.dictMBTI[Object.keys(this.$store.state.answer)[0]] += 1;
-				console.log(this.$store.state.dictMBTI);
-				console.log("A 선택.");
+				// console.log(this.$store.state.dictMBTI);
+				// console.log("A 선택.");
 			},
 			SELECT_B: function () {
 				// dictMBTI 객체, 해당 답변의 Key의 Value ++1
 				// Object.keys(this.$store.state.answer)[1] 은 MBTI 유형이 담긴 값 (E I S N F J ... 등)
 				this.$store.state.dictMBTI[Object.keys(this.$store.state.answer)[1]] += 1;
-				console.log(this.$store.state.dictMBTI);
-				console.log("B 선택.");
+				// console.log(this.$store.state.dictMBTI);
+				// console.log("B 선택.");
 			},
 		},
 	};

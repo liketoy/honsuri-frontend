@@ -58,10 +58,10 @@
 			axios
 				.get(full_url)
 				.then(res => {
-					console.log(res.data);
-					console.log(res.data.question);
+					// console.log(res.data);
+					// console.log(res.data.question);
 					this.$store.state.question = res.data.question;
-					console.log(res.data.answer);
+					// console.log(res.data.answer);
 					this.$store.state.answer = res.data.answer;
 				})
 				.catch(err => {
@@ -88,7 +88,7 @@
 			}
 			// qua_count가 16이 되면 대화 종료 -> MBTI 결과값 반환
 			if (this.$store.state.qna_count === 16) {
-				console.log("MBTI 테스트 끝 🎉");
+				// console.log("MBTI 테스트 끝 🎉");
 				let dictMBTI = this.$store.state.dictMBTI;
 				// 사용자의 MBTI 결과값 반환
 				for (let key in dictMBTI) {
