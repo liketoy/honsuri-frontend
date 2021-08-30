@@ -19,6 +19,7 @@
 			</div>
 			<div class="card__count">
 				<span class="count__likes">좋아요 {{ feed.like_count }}</span>
+				<span class="count__comments" style="padding-left: 30px">댓글수 {{ feed.comment_count }}</span>
 			</div>
 		</div>
 		<div class="btn__container">
@@ -34,7 +35,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="comment_container" v-show="commentAvail">
+		<div class="comment_container">
 			<div class="commenter__avatar"></div>
 			<div class="commenter__content">
 				<label
@@ -42,7 +43,8 @@
 				/></label>
 				<button style="cursor: pointer font-size:20px" @click="onSubmitComment">작성</button>
 			</div>
-			<div class="comments_list"></div>
+		</div>
+		<div class="comments_list" v-show="commentAvail">
 			<CommentVue v-for="comment in comments" :key="comment.id" :comment="comment" />
 		</div>
 	</div>
@@ -51,6 +53,7 @@
 <style scoped>
 	.feed__card {
 		margin-top: 20px;
+		padding-bottom: 20px;
 		width: 100%;
 		height: auto;
 		box-sizing: border-box;
@@ -115,6 +118,7 @@
 	.btn__container {
 		width: 100%;
 		border-top: 1px solid #dbdbdb;
+		border-bottom: 1px solid #dbdbdb;
 	}
 	.card__btn {
 		display: flex;
@@ -145,17 +149,17 @@
 	.comment_container {
 		margin-right: 10px;
 		min-width: 490px;
-		padding: 0px 0px 20px;
+		padding: 20px 0px 20px;
 		display: flex;
 		flex-direction: row;
 		align-items: flex-start;
 		float: left;
-		align-content: center;
 	}
 
 	.input__comment {
 		margin-left: 10px;
-		width: 510px;
+		margin-right: 10px;
+		width: 430px;
 		background-color: #ededed;
 		border-radius: 10px;
 		opacity: 1;
@@ -164,6 +168,10 @@
 		font-size: 16px;
 		padding: 10px;
 		border: none;
+	}
+	.comment_container {
+		display: flex;
+		justify-content: left;
 	}
 </style>
 

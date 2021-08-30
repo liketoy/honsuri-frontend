@@ -186,7 +186,7 @@ export default new Vuex.Store({
 		},
 		/*
 		async LIKE_POST({dispatch}) {
-			axios.get("https://honsuri-backend.herokuapp.com/post/like/" + this.id).then(response => {
+			axios.get("https://honsuri-backend.herokuapp.com/post/like/" + this.post id).then(response => {
 				console.log("좋아요 됐지롱!"); //206참고해서 보충해야한다...
 			});
 		},
@@ -218,11 +218,11 @@ export default new Vuex.Store({
 		},
 		async POST_COMMENT({ state, dispatch }, obj) {
 			const formData = new FormData();
-			formData.append("commentContent", obj.commentContent);
-			console.log("포스트의id:" + obj.id);
-			const res = await api.createComments(formData, state.token, obj.post);
+			formData.append("content", obj.commentContent);
+			console.log(obj.post);
+			const res = await api.createComments(formData, state.token, 6);
 			if (res.status === 201) {
-				dispatch("GET_COMMENTS", obj.post);
+				dispatch("GET_COMMENTS");
 			}
 		},
 		async POST_LOGIN({ dispatch }, obj) {
