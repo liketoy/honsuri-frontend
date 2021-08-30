@@ -10,11 +10,7 @@
 			</div>
 			<div class="card__content">
 				<div class="card__image">
-					<img
-						v-if="feed.photos[0]"
-						:src="'http://ec2-18-215-16-128.compute-1.amazonaws.com:8000' + feed.photos[0].image"
-						alt="photo"
-					/>
+					<img v-if="feed.photos[0]" :src="feed.photos[0].image" alt="photo" />
 					<img v-else src="@/assets/images/default_img.png" alt="default__photo" />
 				</div>
 				<div class="card__caption">
@@ -184,7 +180,6 @@
 				LikeSrc: require("@/assets/icons/gray_heart.png"),
 				heartSrc: require("@/assets/icons/full_heart.png"),
 				grayheartSrc: require("@/assets/icons/gray_heart.png"),
-				imgSrc: "http://ec2-18-215-16-128.compute-1.amazonaws.com:8000",
 				commentAvail: false,
 				commentContent: "",
 				//댓글쓰기 누르면 true로 바꿔줄 예정,

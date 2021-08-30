@@ -104,7 +104,7 @@
 			GET_RECOMMEND_COCKTAIL: function () {
 				const mbti_result = { mbti: this.$store.state.mbti_result };
 				axios
-					.get("http://ec2-18-215-16-128.compute-1.amazonaws.com:8000/mbti", {
+					.get("https://honsuri-backend.herokuapp.com/mbti", {
 						params: mbti_result,
 					})
 					.then(res => {

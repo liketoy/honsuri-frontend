@@ -123,7 +123,7 @@
 				content: "",
 				selectedFile: "",
 				searchContent: "",
-				Url: "http://ec2-18-215-16-128.compute-1.amazonaws.com:8000/post?keyword=",
+				Url: "https://honsuri-backend.herokuapp.com/post?keyword=",
 				keywordUrl: "", //댓글쓰기 누르면 반복문을 멈추고 피드가 하나만 보이도록 하기 위함
 			};
 		},

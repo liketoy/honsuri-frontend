@@ -31,6 +31,7 @@
 	.recipe_container {
 		display: flex;
 		align-items: center;
+		justify-content: center;
 	}
 	.recipe_sub_container {
 		width: 290px;

@@ -51,7 +51,7 @@
 		// 추후 API 호출 부분 정리 !!!!
 		// 처음에 혼수리 대화 하기 데이터를 불러오기 위함
 		created() {
-			const mbti_url = "http://ec2-18-215-16-128.compute-1.amazonaws.com:8000/mbti/";
+			const mbti_url = "https://honsuri-backend.herokuapp.com/mbti/";
 			const mbti_id = this.$store.state.qna_count;
 			// 사용자가 mbti test 답안을 선택할 때 마다, count++ 되는데, 그때의 count를 url 뒤에 붙여서 API 통신
 			const full_url = mbti_url + mbti_id;
@@ -70,7 +70,7 @@
 		},
 		// qna_count 값이 업데이트 될 때 마다, 새로운 질문을 불러오기 위함
 		updated() {
-			const mbti_url = "http://ec2-18-215-16-128.compute-1.amazonaws.com:8000/mbti/";
+			const mbti_url = "https://honsuri-backend.herokuapp.com/mbti/";
 			const mbti_id = this.$store.state.qna_count;
 			// 사용자가 mbti test 답안을 선택할 때 마다, count++ 되는데, 그때의 count를 url 뒤에 붙여서 API 통신
 			const full_url = mbti_url + mbti_id;

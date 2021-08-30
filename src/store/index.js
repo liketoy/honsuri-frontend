@@ -184,7 +184,7 @@ export default new Vuex.Store({
 				// console.log("북마크 등록 실패");
 			}
 		},
-		async GET_FEEDS({ commit }, Url = "http://ec2-18-215-16-128.compute-1.amazonaws.com:8000/post") {
+		async GET_FEEDS({ commit }, Url = "https://honsuri-backend.herokuapp.com/post") {
 			axios.get(Url).then(response => {
 				commit("SET_FEEDS", response.data);
 			});
@@ -204,7 +204,7 @@ export default new Vuex.Store({
 			}
 		},
 		async GET_COMMENTS({ commit }, id) {
-			axios.get("http://ec2-18-215-16-128.compute-1.amazonaws.com:8000/post/" + id + "/comment").then(response => {
+			axios.get("https://honsuri-backend.herokuapp.com/post/" + id + "/comment").then(response => {
 				commit("SET_COMMENTS", response.data);
 			});
 		},
