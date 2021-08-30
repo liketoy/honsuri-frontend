@@ -10,6 +10,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
+    "i": "0.3.6",
     "vue": "^2.6.11",
     "vue-fullpage.js": "^0.1.7",
     "vue-infinite-loading": "^2.4.5",
