@@ -309,6 +309,7 @@
 		},
 		data() {
 			return {
+				black: "#191919",
 				email: "",
 				password: "",
 				password1: "",

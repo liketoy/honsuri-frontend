@@ -96,6 +96,7 @@
 			return {
 				email: "",
 				password: "",
+				black: "#191919",
 			};
 		},
 		components: {
