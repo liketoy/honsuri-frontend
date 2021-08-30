@@ -6,11 +6,13 @@
 				<div class="card__cocktail" v-for="(cocktail, index) in cocktailRecipe" :key="index" avatar>
 					<div>
 						<!-- v-bind:src -->
-						<img :src="cocktail.img" />
-						<div class="cocktail__content">
-							<p class="cocktail__name">{{ cocktail.cocktailName }}</p>
-							<p class="cocktail__base">#{{ cocktail.base }}</p>
-						</div>
+						<router-link :to="{ name: 'RecipeDetail', params: { id: cocktail.cockId } }">
+							<img class="cocktail__img" :src="cocktail.img" />
+							<div class="cocktail__content">
+								<p class="cocktail__name">{{ cocktail.cocktailName }}</p>
+								<p class="cocktail__base">#{{ cocktail.base }}</p>
+							</div>
+						</router-link>
 					</div>
 				</div>
 			</div>
@@ -33,6 +35,10 @@
 		display: grid;
 		grid-template-columns: repeat(4, 1fr);
 		gap: 40px;
+	}
+	.cocktail__img {
+		width: 290px;
+		height: 290px;
 	}
 	.cocktail__content {
 		text-align: left;
@@ -84,42 +90,50 @@
 					{
 						cocktailName: "스크류키스",
 						base: "소주",
-						img: require("@/assets/images/스크류키스.png"),
+						cockId: 1,
+						img: require("@/assets/recipeImg/screwkiss.png"),
 					},
 					{
 						cocktailName: "에너자이저주",
 						base: "소주",
-						img: require("@/assets/images/에너자이저주.png"),
+						cockId: 16,
+						img: require("@/assets/recipeImg/energizerju.png"),
 					},
 					{
 						cocktailName: "진토닉",
 						base: "양주",
-						img: require("@/assets/images/진토닉.png"),
+						cockId: 26,
+						img: require("@/assets/recipeImg/JinTonik.png"),
 					},
 					{
-						cocktailName: "키스헌터",
+						cocktailName: "태극주",
 						base: "소주",
-						img: require("@/assets/images/키스헌터.png"),
+						cockId: 15,
+						img: require("@/assets/recipeImg/Taegeukju.png"),
 					},
 					{
 						cocktailName: "하이볼",
 						base: "양주",
-						img: require("@/assets/images/하이볼.png"),
+						cockId: 22,
+						img: require("@/assets/recipeImg/HighBall.png"),
 					},
 					{
-						cocktailName: "Old Fashioned",
+						cocktailName: "블루라군",
 						base: "양주",
-						img: require("@/assets/images/Old_Fashioned.png"),
+						cockId: 20,
+						img: require("@/assets/recipeImg/BlueLaggon.png"),
 					},
 					{
-						cocktailName: "Sherry Cobbler",
-						base: "양주",
-						img: require("@/assets/images/Sherry_Cobbler.png"),
+						cocktailName: "모구모구스파클링",
+						base: "소주",
+						cockId: 5,
+						img: require("@/assets/recipeImg/mogumogusparkling.png"),
 					},
 					{
-						cocktailName: "Tweak Classic",
-						base: "양주",
-						img: require("@/assets/images/Tweak_Classic.png"),
+						cocktailName: "청포도 맥주",
+						base: "맥주",
+						cockId: 23,
+						img: require("@/assets/recipeImg/GrapeBeer.png"),
 					},
 				],
 			};
