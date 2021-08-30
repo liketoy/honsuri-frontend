@@ -14,8 +14,7 @@
 
 				<div class="recipe_title">
 					<p>{{ recipe.name }}</p>
-					<div>{{ recipe.bookmark }}</div>
-					<!-- <div>{{ this.$store.state.token }}</div> -->
+					<!-- <div>{{ recipe.bookmark }}</div> -->
 				</div>
 			</router-link>
 			<div class="recipe_detail">
@@ -134,6 +133,9 @@
 			// 	console.log("클릭");
 			// 	this.$store.dispatch("CREAT_BOOKMARK", this.recipe.id, { message: "CREATE_BOOKMARK" });
 			// },
+		},
+		created() {
+			// console.log(this.recipe);
 		},
 	};
 </script>

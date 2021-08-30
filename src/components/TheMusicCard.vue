@@ -67,7 +67,7 @@
 				audio: null,
 				isPlaying: false,
 				photos: require("@/assets/musicImg/" + this.music.photo),
-				// musictFile: require("@/assets/audio/" + this.music.file_name),
+				musictFile: "https://honsuri-uploads.s3.ap-northeast-2.amazonaws.com/uploads/musics/bg_chill_01.mp3",
 			};
 		},
 		computed: {

@@ -28,11 +28,9 @@
 					</div>
 
 					<p class="recipe_sub_title">HOW TO MIX</p>
-					<!-- <div>{{ recipe.how_to_mix }}</div>/ -->
-					<!-- {{ recipe.how_to_mix.split("/n").length }} -->
+
 					<div class="recipe_how_to_mix">
 						<div v-for="i in recipe.how_to_mix.split('/n').length" :key="i">
-							<!-- {{ recipe.how_to_mix.split("/n")[i - 1] }} -->
 							<div v-html="recipe.how_to_mix.split('/n')[i - 1].replace(/(?:\\n|\r\n|\r|\n)/g, '<p/>')"></div>
 						</div>
 					</div>
@@ -41,7 +39,7 @@
 			<div class="recipe_detail">
 				<p>상세 레시피</p>
 				<p class="recipe_detail_contents" v-html="recipe.detail_contents.replace(/(?:\\n|\r\n|\r|\n)/g, '<p/>')"></p>
-				<p class="recipe_detail_title">동영상</p>
+				<!-- <p class="recipe_detail_title">동영상</p> -->
 				<!-- <div>{{ recipe.youtube_link }}</div> -->
 				<!-- <iframe
 					width="729"
@@ -54,9 +52,6 @@
 				></iframe> -->
 			</div>
 		</div>
-		<!-- src="https://www.youtube.com/embed/R9IuHMWslnM" -->
-
-		<!-- <div @click="click()">parameter : {{ thisRecipe.photo }}</div> -->
 	</div>
 </template>
 
@@ -153,17 +148,14 @@
 
 <script>
 	import TheHeaderVue from "../TheHeader.vue";
-	// import axios from "axios";
-	// import api from "../../api/index";
+
 	export default {
 		name: "RecipeDetail",
-		// props: ["recipe"],
 		components: {
 			TheHeaderVue,
 		},
 		data() {
 			return {
-				// text: "CREATE_BOOKMARK",
 				black: "#191919",
 				count: 0,
 				thisRecipe: [],
