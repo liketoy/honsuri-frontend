@@ -5,14 +5,13 @@
 			<div class="music__container">
 				<div class="music_info" v-for="(music, index) in musicList" :key="index">
 					<div class="info_thumbnail" :style="{ background: 'url(' + music.img + ')' }">
-						<button class="play__btn"></button>
-						<button class="play__inner_btn"></button>
+						<img src="@/assets/icons/play.png" class="play__btn" />
 						<span class="thumbnail__title">{{ music.thumbnail }}</span>
 					</div>
 					<div class="info_text">
 						<p class="music__title">{{ music.musicTitle }}</p>
 						<p class="music__dj">{{ music.DJName }}</p>
-						<a href="" class="music__url">혼술하러 가기 ></a>
+						<router-link to="recipes/" href="" class="music__url">혼술하러 가기 ></router-link>
 					</div>
 				</div>
 			</div>
@@ -47,25 +46,11 @@
 
 	.info_thumbnail .play__btn {
 		position: absolute;
+		cursor: pointer;
 		left: 15px;
 		bottom: 15px;
-		border-radius: 50%;
-		border: 1px solid #ffff;
 		width: 35px;
 		height: 35px;
-		background-color: transparent;
-	}
-
-	.info_thumbnail .play__inner_btn {
-		position: absolute;
-		width: 0px;
-		height: 0px;
-		bottom: 20px;
-		left: 30px;
-		border-top: 10px solid transparent;
-		border-left: 10px solid #ffff;
-		border-right: 0px solid transparent;
-		border-bottom: 10px solid transparent;
 		background-color: transparent;
 	}
 
