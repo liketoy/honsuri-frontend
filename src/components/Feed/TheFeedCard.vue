@@ -209,8 +209,7 @@
 				this.$store.dispatch("GET_COMMENTS", this.post_id);
 			},
 			onSubmitComment: function () {
-				this.$store.dispatch("POST_COMMENT", { commentContent: this.commentContent });
-				console.log("됐다~");
+				this.$store.dispatch("POST_COMMENT", { id: this.feed.id, content: this.commentContent });
 			},
 		},
 		filters: {

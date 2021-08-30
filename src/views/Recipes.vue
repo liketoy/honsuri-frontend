@@ -1,6 +1,8 @@
 <template>
 	<div class="recipes">
-		<TheHeaderVue :color="black" />
+		<div class="conversation_header">
+			<TheHeaderVue :color="black" />
+		</div>
 
 		<div class="container">
 			<div class="top_container">
@@ -73,6 +75,17 @@
 </template>
 
 <style scoped>
+	.conversation_header {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		width: 1920px;
+		height: 80px;
+		background: #ffffff;
+		box-shadow: 3px 3px 6px #00000029;
+		z-index: 2;
+	}
 	.recipes {
 		display: flex;
 		align-content: center;
@@ -81,6 +94,7 @@
 	}
 	.container {
 		width: 1280px;
+		z-index: 1;
 	}
 
 	.top_container {

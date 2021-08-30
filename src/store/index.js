@@ -220,12 +220,9 @@ export default new Vuex.Store({
 			});
 		},
 		async POST_COMMENT({ state, dispatch }, obj) {
-			const formData = new FormData();
-			formData.append("commentContent", obj.commentContent);
-			console.log("포스트의id:" + obj.id);
-			const res = await api.createComments(formData, state.token, obj.post);
+			const res = await api.createComments({ content: obj.content }, state.token, obj.id);
 			if (res.status === 201) {
-				dispatch("GET_COMMENTS", obj.post);
+				dispatch("GET_COMMENTS", obj.id);
 			}
 		},
 		async POST_LOGIN({ dispatch }, obj) {
