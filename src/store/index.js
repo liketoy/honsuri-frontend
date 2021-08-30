@@ -184,10 +184,9 @@ export default new Vuex.Store({
 				// console.log("북마크 등록 실패");
 			}
 		},
-		async GET_FEEDS({ commit }, Url = "https://honsuri-backend.herokuapp.com/post") {
-			axios.get(Url).then(response => {
-				commit("SET_FEEDS", response.data);
-			});
+		async GET_FEEDS({ commit, state }) {
+			const response = await api.feeds(state.token);
+			commit("SET_FEEDS", response.data);
 		},
 		async POST_FEED({ state, dispatch }, obj) {
 			const formData = new FormData();
@@ -300,6 +299,13 @@ export default new Vuex.Store({
 				if (status === 201) {
 					router.push({ name: "Me" });
 				}
+			} catch (e) {
+				console.warn(e);
+			}
+		},
+		async POST_LIKE({ state }, id) {
+			try {
+				await api.createLike(id, state.token);
 			} catch (e) {
 				console.warn(e);
 			}

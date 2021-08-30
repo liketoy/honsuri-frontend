@@ -17,12 +17,11 @@
 		background: #ededed;
 		margin: 0 auto;
 		width: 100vw;
-		height: 100vh;
 	}
 	.user__container {
 		max-width: 1280px;
-		margin: 140px auto;
-		padding-top: 50px;
+		margin: 140px auto 0;
+		padding: 50px 0;
 		display: flex;
 		justify-content: center;
 		align-items: flex-start;

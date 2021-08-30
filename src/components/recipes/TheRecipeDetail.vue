@@ -191,7 +191,6 @@
 				} else {
 					this.$store.state.recipe.bookmark = false;
 				}
-				console.log(this.$store.state.bookmark);
 				this.$store.dispatch("CREAT_BOOKMARK", { id: this.recipe.id });
 
 				// console.log("!!");

@@ -25,7 +25,8 @@
 			<!--v-if="$store.state.isLoggedIn"생략-->
 			<div class="card__btn">
 				<div class="btn">
-					<img :src="LikeSrc" alt="heart" style="cursor: pointer" @click="Like" />
+					<img v-if="feed.likepost" :src="this.heartSrc" alt="heart" style="cursor: pointer" @click="Like(feed.id)" />
+					<img v-else :src="this.grayheartSrc" alt="heart" style="cursor: pointer" @click="Like(feed.id)" />
 					<span>좋아요</span>
 				</div>
 				<div class="btn">
@@ -187,15 +188,14 @@
 		},
 		methods: {
 			// 1. birth 관련 조건이 맞으면 버튼 활성화
-			Like: function () {
+			Like: function (id) {
 				this.isLiked = !this.isLiked;
 				if (this.isLiked == true) {
 					this.feed.like_count += 1;
-					this.LikeSrc = this.heartSrc;
 				} else {
 					this.feed.like_count -= 1;
-					this.LikeSrc = this.grayheartSrc;
 				}
+				this.$store.dispatch("POST_LIKE", id);
 			},
 			AvailComment: function () {
 				this.commentAvail = !this.commentAvail;

@@ -10,7 +10,6 @@
 <style scoped>
 	.container {
 		background-color: #ededed;
-
 		padding-top: 130px;
 		padding-bottom: 50px;
 	}

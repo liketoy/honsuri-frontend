@@ -1,6 +1,8 @@
 <template>
 	<div class="sign__section">
-		<TheHeaderVue />
+		<div class="conversation_header">
+			<TheHeaderVue :color="black" />
+		</div>
 		<div class="sign__container">
 			<h2 class="sign__title">회원가입</h2>
 			<div class="info__container botborder">
@@ -177,6 +179,16 @@
 		justify-content: center;
 		align-items: center;
 		background: #ededed;
+	}
+	.conversation_header {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		width: 1920px;
+		height: 80px;
+		background: #ffffff;
+		box-shadow: 3px 3px 6px #00000029;
 	}
 	.sign__container {
 		margin: 140px auto;
