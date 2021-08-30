@@ -184,6 +184,13 @@ export default new Vuex.Store({
 				// console.log("북마크 등록 실패");
 			}
 		},
+		/*
+		async LIKE_POST({dispatch}) {
+			axios.get("https://honsuri-backend.herokuapp.com/post/like/" + this.id).then(response => {
+				console.log("좋아요 됐지롱!"); //206참고해서 보충해야한다...
+			});
+		},
+		*/
 		async GET_FEEDS({ commit }, Url = "https://honsuri-backend.herokuapp.com/post") {
 			axios.get(Url).then(response => {
 				commit("SET_FEEDS", response.data);
@@ -205,15 +212,17 @@ export default new Vuex.Store({
 		},
 		async GET_COMMENTS({ commit }, id) {
 			axios.get("https://honsuri-backend.herokuapp.com/post/" + id + "/comment").then(response => {
+				console.log("https://honsuri-backend.herokuapp.com/post/" + id + "/comment");
 				commit("SET_COMMENTS", response.data);
 			});
 		},
 		async POST_COMMENT({ state, dispatch }, obj) {
 			const formData = new FormData();
 			formData.append("commentContent", obj.commentContent);
-			const res = await api.createComments(formData, state.token);
+			console.log("포스트의id:" + obj.id);
+			const res = await api.createComments(formData, state.token, obj.post);
 			if (res.status === 201) {
-				dispatch("GET_COMMENTS");
+				dispatch("GET_COMMENTS", obj.post);
 			}
 		},
 		async POST_LOGIN({ dispatch }, obj) {

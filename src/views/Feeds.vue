@@ -34,8 +34,7 @@
 					<input type="button" class="attachimage" @click="onSubmit" value="제출" style="display: inline" />
 				</div>
 			</div>
-			<wrap v-if="onlyOneFeed"><TheFeedCardVue /></wrap>
-			<wrap v-else><TheFeedCardVue v-for="feed in feeds" :key="feed.id" :feed="feed" /></wrap>
+			<TheFeedCardVue v-for="feed in feeds" :key="feed.id" :feed="feed" />
 		</div>
 	</div>
 </template>
