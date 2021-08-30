@@ -9,8 +9,11 @@ Vue.use(Vuex);
 export default new Vuex.Store({
 	state: {
 		audio: [],
+		audioTwo: [],
 		audioPlayed: [],
+		audioPlayedTwo: [],
 		musicIsPlaying: [],
+		musicIsPlayingTwo: [],
 		musics: [],
 		recipe: [],
 		recipes: [],
@@ -84,6 +87,11 @@ export default new Vuex.Store({
 		setMusicPlaying(state) {
 			for (var i = 0; i < 4; i++) {
 				state.musicIsPlaying[i] = false;
+			}
+		},
+		setMusicPlayingTwo(state) {
+			for (var i = 0; i < 4; i++) {
+				state.musicIsPlayingTwo[i] = false;
 			}
 		},
 		setBookmark(state, data) {
@@ -161,6 +169,9 @@ export default new Vuex.Store({
 		},
 		async getMusicPlaying({ commit }) {
 			commit("setMusicPlaying");
+		},
+		async getMusicPlayingTwo({ commit }) {
+			commit("setMusicPlayingTwo");
 		},
 		// async POST_SIGNUP(_, obj)
 		async CREAT_BOOKMARK({ state }, obj) {
