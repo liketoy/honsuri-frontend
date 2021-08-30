@@ -25,31 +25,25 @@
 			<!--v-if="$store.state.isLoggedIn"생략-->
 			<div class="card__btn">
 				<div class="btn">
-					<img v-if="feed.likepost" :src="this.heartSrc" alt="heart" style="cursor: pointer" @click="Like(feed.id)" />
-					<img v-else :src="this.grayheartSrc" alt="heart" style="cursor: pointer" @click="Like(feed.id)" />
-					<span>좋아요</span>
+					<label style="cursor: pointer" @click="Like"><img :src="LikeSrc" alt="heart" /> <span>좋아요</span></label>
 				</div>
 				<div class="btn">
-					<img src="@/assets/icons/speech-bubble.png" alt="bubble" style="cursor: pointer" @click="AvailComment" />
-					<span>댓글쓰기</span>
+					<label style="cursor: pointer" @click="AvailComment"
+						><img src="@/assets/icons/speech-bubble.png" alt="bubble" /> <span>댓글쓰기</span></label
+					>
 				</div>
 			</div>
 		</div>
 		<div class="comment_container" v-show="commentAvail">
 			<div class="commenter__avatar"></div>
 			<div class="commenter__content">
-				<wrap
-					><input
-						type="text"
-						class="input__comment"
-						v-model="commentContent"
-						placeholder="댓글을 입력하세요."
-						@keyup.enter="onSubmitComment"
-				/></wrap>
-				<!-- 생략 -->
+				<label
+					><input type="text" class="input__comment" v-model="commentContent" placeholder="댓글을 입력하세요."
+				/></label>
+				<button style="cursor: pointer font-size:20px" @click="onSubmitComment">작성</button>
 			</div>
 			<div class="comments_list"></div>
-			<!--댓글 component를 v-for로 보여줘야한다 하 하 하-->
+			<CommentVue v-for="comment in comments" :key="comment.id" :comment="comment" />
 		</div>
 	</div>
 </template>
@@ -140,6 +134,7 @@
 		margin-right: 10px;
 	}
 	.commenter__avatar {
+		margin-left: 10px;
 		width: 50px;
 		height: 50px;
 		background: #dbdbdb;
@@ -148,8 +143,9 @@
 	}
 
 	.comment_container {
-		padding: 20px;
-		min-width: 560px;
+		margin-right: 10px;
+		min-width: 490px;
+		padding: 0px 0px 20px;
 		display: flex;
 		flex-direction: row;
 		align-items: flex-start;
@@ -172,6 +168,7 @@
 </style>
 
 <script>
+	import CommentVue from "./CommentVue.vue";
 	export default {
 		name: "TheFeedCard",
 		props: ["feed"],
@@ -183,8 +180,17 @@
 				grayheartSrc: require("@/assets/icons/gray_heart.png"),
 				commentAvail: false,
 				commentContent: "",
+				post_id: this.feed.id,
 				//댓글쓰기 누르면 true로 바꿔줄 예정,
 			};
+		},
+		components: {
+			CommentVue,
+		},
+		computed: {
+			comments() {
+				return this.$store.state.comments;
+			},
 		},
 		methods: {
 			// 1. birth 관련 조건이 맞으면 버튼 활성화
@@ -199,9 +205,12 @@
 			},
 			AvailComment: function () {
 				this.commentAvail = !this.commentAvail;
+				console.log(this.post_id);
+				this.$store.dispatch("GET_COMMENTS", this.post_id);
 			},
 			onSubmitComment: function () {
 				this.$store.dispatch("POST_COMMENT", { commentContent: this.commentContent });
+				console.log("됐다~");
 			},
 		},
 		filters: {
@@ -221,6 +230,9 @@
 				}
 				return `${year}년 ${month}월 ${day}일 ${str_ampm} ${hour}:${min}`;
 			},
+		},
+		mounted() {
+			this.$store.dispatch("GET_COMMENTS");
 		},
 	};
 </script>

@@ -204,15 +204,17 @@ export default new Vuex.Store({
 		},
 		async GET_COMMENTS({ commit }, id) {
 			axios.get("https://honsuri-backend.herokuapp.com/post/" + id + "/comment").then(response => {
+				console.log("https://honsuri-backend.herokuapp.com/post/" + id + "/comment");
 				commit("SET_COMMENTS", response.data);
 			});
 		},
 		async POST_COMMENT({ state, dispatch }, obj) {
 			const formData = new FormData();
 			formData.append("commentContent", obj.commentContent);
-			const res = await api.createComments(formData, state.token);
+			console.log("포스트의id:" + obj.id);
+			const res = await api.createComments(formData, state.token, obj.post);
 			if (res.status === 201) {
-				dispatch("GET_COMMENTS");
+				dispatch("GET_COMMENTS", obj.post);
 			}
 		},
 		async POST_LOGIN({ dispatch }, obj) {
