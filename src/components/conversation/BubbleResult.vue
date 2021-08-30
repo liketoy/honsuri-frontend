@@ -12,7 +12,7 @@
 				<h1>{{ recommend_cock }}</h1>
 				<p>"{{ recommend_comment }}"</p>
 				<!-- 쿼리가 있으면, `/recipes/?id=${recommend_cock_id}` 형식이 됨 -->
-				<router-link :to="{ path: 'recipes/', query: { id: this.$store.state.recommend_cock_id } }">
+				<router-link :to="'recipes/' + this.$store.state.recommend_cock_id">
 					<button>레시피 보러가기</button>
 				</router-link>
 			</div>

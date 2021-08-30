@@ -212,6 +212,7 @@
 		mounted() {
 			this.$store.dispatch("getRecipes");
 			this.$store.dispatch("getRecipesForBase");
+			console.log(this.recipes);
 		},
 	};
 </script>

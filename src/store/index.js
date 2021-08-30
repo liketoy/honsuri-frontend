@@ -10,8 +10,8 @@ export default new Vuex.Store({
 	state: {
 		audio: [],
 		audioPlayed: [],
-		// musicIsPlaying: [],
-		// musics: [],
+		musicIsPlaying: [],
+		musics: [],
 		recipe: [],
 		recipes: [],
 		sojuList: [],
@@ -57,9 +57,9 @@ export default new Vuex.Store({
 		recommend_cock_photo: "",
 	},
 	mutations: {
-		// setMusics(state, data) {
-		// 	state.musics = data.data;
-		// },
+		setMusics(state, data) {
+			state.musics = data.data;
+		},
 		setRecipeOne(state, data) {
 			state.recipe = data.data[0];
 		},
@@ -81,15 +81,15 @@ export default new Vuex.Store({
 		setFruitRecipes(state, data) {
 			state.fruitList = data;
 		},
-		// setMusicPlaying(state) {
-		// 	for (var i = 0; i < 4; i++) {
-		// 		state.musicIsPlaying[i] = false;
-		// 	}
-		// },
-		// setBookmark(state, data) {
-		// 	console.log(data.data);
-		// 	state.bookmark = data.data.bookmark;
-		// },
+		setMusicPlaying(state) {
+			for (var i = 0; i < 4; i++) {
+				state.musicIsPlaying[i] = false;
+			}
+		},
+		setBookmark(state, data) {
+			console.log(data.data);
+			state.bookmark = data.data.bookmark;
+		},
 		//feeds를 가져온다.
 		SET_FEEDS(state, feeds) {
 			state.feeds = feeds;
@@ -120,10 +120,10 @@ export default new Vuex.Store({
 		},
 	},
 	actions: {
-		// async getMusics({ commit }) {
-		// 	const data = await api.musics();
-		// 	commit("setMusics", data);
-		// },
+		async getMusics({ commit }) {
+			const data = await api.musics();
+			commit("setMusics", data);
+		},
 		async getRecipes({ state, commit }) {
 			const data = await api.recipes(state.token);
 			commit("setRecipes", data);
@@ -159,9 +159,9 @@ export default new Vuex.Store({
 			const data = await api.recipe(id, state.token);
 			commit("setRecipeOne", data);
 		},
-		// async getMusicPlaying({ commit }) {
-		// 	commit("setMusicPlaying");
-		// },
+		async getMusicPlaying({ commit }) {
+			commit("setMusicPlaying");
+		},
 		// async POST_SIGNUP(_, obj)
 		async CREAT_BOOKMARK({ state }, obj) {
 			// console.log(obj.message);
